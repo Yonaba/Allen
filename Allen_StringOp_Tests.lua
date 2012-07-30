@@ -26,7 +26,7 @@ local _ = require 'Lib.Allen'
 
 print(' ==== Testing strings With Operators ==== \n')
 
-print("'+' Operator concatenates strings. It is commutative.")
+print("'+' Operator concatenates strings. It is NOT commutative.")
 print('Hi' + ' Johnny')
 
 print("\n'*' Operator repeats a given string. It is commutative.")

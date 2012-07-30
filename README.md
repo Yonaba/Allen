@@ -1,4 +1,4 @@
-﻿__Allen__ is Lua library which provides a set of utilities and helpers for strings operations.
+﻿__Allen__ is a Lua library which provides a set of utilities and helpers for strings operations.
 In a nutshell, __Allen__ is to strings what [Moses][] is to tables.
 __Allen__ can be considered as an extension of the built-in Lua string library.<br/>
 __Allen__'s API was heavily inspired by the Javascript library [Underscore.string][].
