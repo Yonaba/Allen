@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Allen by Yonaba</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Allen</h1>
+        <p>A utility library to manipulate strings in Lua</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Yonaba/Allen" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/Yonaba/Allen/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/Yonaba/Allen/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <p><strong>Allen</strong> is a Lua library which provides a set of utilities and helpers for strings operations.
+In a nutshell, <strong>Allen</strong> is to strings what <a href="https://github.com/Yonaba/Moses">Moses</a> is to tables.
+<strong>Allen</strong> can be considered as an extension of the built-in Lua string library.<br><strong>Allen</strong>'s API was heavily inspired by the Javascript library <a href="https://github.com/epeli/underscore.string">Underscore.string</a>.</p>
+
+<h2>Installation</h2>
+
+<p>Put the file <a href="https://github.com/Yonaba/Allen/blob/master/Lib/Allen.lua">Allen.lua</a> inside your project folder and call it using <em>require</em> command.
+It will return a table containing a set of functions.</p>
+
+<h2>Usage example</h2>
+
+<pre><code>local lyrics = 'hey I just met you\nand this is crazy\nbut here is my number\nso call me maybe'
+lyrics = _.lines(lyrics)
+for i,line in ipairs(lyrics) do line = _.capitalizeFirst(line) end
+=&gt; { 'Hey I just met you',
+     'And this is crazy',
+     'But here is my number',
+     'So call me maybe'}
+</code></pre>
+
+<h2>Allen and the built-in string library</h2>
+
+<p><strong>Allen</strong> provides a very handy function named <em>_.import</em>, which links Lua's native string library with <strong>Allen</strong>'s functions.</p>
+
+<pre><code>_.import()
+print(string.capitalize('hello'))
+print(('Hello'):splice(2,2,'r'))
+</code></pre>
+
+<h2>About Lua Operators</h2>
+
+<p>Once <strong>Allen</strong> is called inside your projet,it enables the use of arithmetic operators on strings by default.<br>
+Compatible operators are : <strong>+,*,/,%,^,-.</strong></p>
+
+<ul>
+<li>Addition operator (+) : concatenates two strings</li>
+<li>Unary operator (-) : reverses a string</li>
+<li>Multiplication operator (*) : repeats a string</li>
+<li>Power operator (^) : also repeats a string</li>
+<li>Division operator (/) : used for chopping strings (dividing it in subsets strings)</li>
+<li>Modulo operator (%) : returns the remainder subset string after a chopping process.</li>
+</ul><p>Strings can also be indexed, like regular Lua tables.</p>
+
+<pre><code>for i = 1,5 do 
+    print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
+end
+=&gt; Accessing Hello[1] : H
+=&gt; Accessing Hello[2] : e
+=&gt; Accessing Hello[3] : l
+=&gt; Accessing Hello[4] : l
+=&gt; Accessing Hello[5] : o
+</code></pre>
+
+<p>See <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Test.lua">Allen_StringOp_Test.lua</a> for more details.</p>
+
+<h2>API Overview</h2>
+
+<p><strong>Allen</strong> offers a lot of functions, iterators to operate on strings.<br>
+A fully complete documentation, with usage examples can be found here : <a href="https://github.com/Yonaba/Allen/blob/master/Documentation">Documentation</a><br>
+A test suite for all functions provided can be found here : <a href="https://github.com/Yonaba/Allen/blob/master/Allen_Lib_Test.lua">Allen_Lib_Test.lua</a> and <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Test.lua">Allen_StringOp_Test.lua</a></p>
+
+<h2>Credits and Thanks</h2>
+
+<p><a href="https://github.com/epeli">Esa-Matti Suuronen</a> and <a href="https://github.com/edtsech">Edward Tsech</a>, for the amazing <a href="https://github.com/epeli/underscore.string">Underscore.string</a></p>
+
+<h2>License</h2>
+
+<p>This work is under <a href="http://www.opensource.org/licenses/mit-license.php">MIT-LICENSE</a><br>
+Copyright (c) 2012 Roland Yonaba</p>
+
+<pre><code>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</code></pre>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/Yonaba">Yonaba</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
