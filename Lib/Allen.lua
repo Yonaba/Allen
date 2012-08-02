@@ -237,7 +237,7 @@ _.charAt = _.index
 -- Checks if a given string matches an email address syntax
 function _.isEmail(str)
 	local nAt = _.count(str,'@')
-	if nAt > 1 or nAt == 0 or str:len() > 254 then return false end
+	if nAt > 1 or nAt == 0 or str:len() > 254 or str:find('%s') then return false end
 	local localPart = _.strLeft(str,'@')
 	local domainPart = _.strRight(str,'@')
 	if not localPart or not domainPart then return false end
@@ -383,7 +383,6 @@ end
 -- Returns the substring before the first pattern occurence in a given string
 function _.strLeft(str,pattern)
 	local s,e = str:find(pattern)
-	print('pattern found',s,e)
 	local ret
 	if s then
 		ret = str:sub(1,s-1)
