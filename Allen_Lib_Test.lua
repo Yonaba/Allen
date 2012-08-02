@@ -1,3 +1,8 @@
+--------------------------------------------------------------------------
+-- @author Roland Yonaba
+-- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+--------------------------------------------------------------------------
+
 -- Copyright (c) 2012 Roland Yonaba
 
 --[[
@@ -70,11 +75,32 @@ addSnippet('_.capitalizeFirst(str)',
 print(_.capitalizeFirst('Capitalized'))
 ]])
 
+addSnippet('_.capFirst(str)',
+[[print(_.capFirst('uncapitalized'))
+print(_.capFirst('Capitalized'))
+]])
+
 addSnippet('_.capitalize(str,i,j)',
 [[print(_.capitalize('capitalized'))
 print(_.capitalize('capitalized',5,9))
 print(_.capitalize('capitalized',-8))
 ]])
+
+addSnippet('_.cap(str,i,j)',
+[[print(_.cap('capitalized'))
+print(_.cap('capitalized',5,9))
+print(_.cap('capitalized',-8))
+]])
+
+addSnippet('_.capitalizesEach(str)',
+[[print(_.capitalizesEach('my tailor is rich'))]])
+
+addSnippet('_.capEach(str)',
+[[print(_.capEach('my tailor is rich'))]])
+
+addSnippet('_.caps(str)',
+[[print(_.caps('my tailor is rich'))]])
+
 
 addSnippet('_.lowerFirst(str)',
 [[print(_.lowerFirst('HIGH'))
@@ -93,15 +119,33 @@ print(_.isLower('strinG'))
 print(_.isLower('string'))
 ]])
 
+addSnippet('_.isLowerCase(str)',
+[[print(_.isLowerCase('String'))
+print(_.isLowerCase('strinG'))
+print(_.isLowerCase('string'))
+]])
+
 addSnippet('_.isUpper(str)',
 [[print(_.isUpper('String'))
 print(_.isUpper('sTRinG'))
 print(_.isUpper('STRING'))
 ]])
 
+addSnippet('_.isUpperCase(str)',
+[[print(_.isUpperCase('String'))
+print(_.isUpperCase('sTRinG'))
+print(_.isUpperCase('STRING'))
+]])
+
+
 addSnippet('_.startsLower(str)',
 [[print(_.startsLower('String'))
 print(_.startsLower('sTRinG'))
+]])
+
+addSnippet('_.startsLowerCase(str)',
+[[print(_.startsLowerCase('String'))
+print(_.startsLowerCase('sTRinG'))
 ]])
 
 addSnippet('_.startsUpper(str)',
@@ -109,11 +153,60 @@ addSnippet('_.startsUpper(str)',
 print(_.startsUpper('StiNG'))
 ]])
 
+addSnippet('_.startsUpperCase(str)',
+[[print(_.startsUpperCase('sTRinG'))
+print(_.startsUpperCase('StiNG'))
+]])
+
 addSnippet('_.swapCase(str)',
 [[print(_.swapCase('AlTeRnAtE'))
 print(_.swapCase('AlTeRnAtE',3,7))
 print(_.swapCase('AlTeRnAtE',-4))
 ]])
+
+addSnippet('_.isAlpha(str)',
+[[print(_.isAlpha('text'))
+print(_.isAlpha('text1'))
+print(_.isAlpha('te xt~'))
+]])
+
+addSnippet('_.isNumeric(str)',
+[[print(_.isNumeric('1e20'))
+print(_.isNumeric('-33.2a'))
+]])
+
+addSnippet('_.isAlphaNumeric(str)',
+[[print(_.isAlphaNumeric('-33.2a'))]])
+
+addSnippet('_.isHex(str)',
+[[print(_.isHex('-33.2'))
+print(_.isHex('FDA'))
+]])
+
+addSnippet('_.isHexadecimal(str)',
+[[print(_.isHex('-33.2'))
+print(_.isHex('FDA'))
+]])
+
+addSnippet('_.index(str,i)',
+[[print(_.index('Hello',2))
+print(('Hello')[2])
+print(_.index('Hello',10))
+]])
+
+addSnippet('_.charAt(str,i)',
+[[print(_.charAt('Hello',2))
+print(_.charAt('Hello',10))
+]])
+
+addSnippet('_.isEmail(str)',
+[[print(_.isEmail('@'))
+print(_.isEmail('.com'))
+print(_.isEmail('a@com'))
+print(_.isEmail('~user..nm.@web.co.uk'))
+print(_.isEmail('user.nm@web.co.uk'))
+]])
+
 
 addSnippet('_.levenshtein(strA,strB)',
 [[print(_.levenshtein('test','text'))
@@ -138,6 +231,10 @@ addSnippet('_.chars(str)',
 table.foreach(t,print)
 ]])
 
+addSnippet('_.explode(str)',
+[[local t = _.explode('array')
+table.foreach(t,print)
+]])
 
 addSnippet('_.count(str,sub)',
 [[print(_.count('Betty Butter bought a bit of butter.','tt'))
@@ -186,6 +283,12 @@ addSnippet('_.succ(str)',
 [[print(_.succ('a'))
 print(_.succ('wxy'))
 print(_.succ('D',3))
+]])
+
+addSnippet('_.next(str)',
+[[print(_.next('a'))
+print(_.next('wxy'))
+print(_.next('D',3))
 ]])
 
 addSnippet('_.pre(str)',

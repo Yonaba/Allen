@@ -38,7 +38,7 @@
 <h1>Files</h1>
 <ul>
 
-	<li><strong>Allen.lua</strong></li>
+	<li><strong>Allen</strong></li>
 	
 </ul>
 
@@ -50,7 +50,7 @@
 </div> <!-- id="navigation" -->
 
 <div id="content">
-<p><small><b>Release:</b> $Id: Allen.lua,v 0.1 07/24/2012 Roland_Yonaba$ </small></p>
+<p><small><b>Release:</b> $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$ </small></p>
 <h1>File <code>Allen.lua</code></h1>
 
 
@@ -73,6 +73,21 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.cap">_.cap</a>&nbsp;(str, i, j)</td>
+	<td class="summary">Capitalizes substring i to j in a given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.capEach">_.capEach</a>&nbsp;(str)</td>
+	<td class="summary">Capitalizes each word in a given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.capFirst">_.capFirst</a>&nbsp;(str)</td>
+	<td class="summary">Capitalizes the first character of a given string.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.capitalize">_.capitalize</a>&nbsp;(str, i, j)</td>
 	<td class="summary">Capitalizes substring i to j in a given string </td>
 	</tr>
@@ -83,8 +98,23 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.capitalizesEach">_.capitalizesEach</a>&nbsp;(str)</td>
+	<td class="summary">Capitalizes each word in a given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.caps">_.caps</a>&nbsp;(str)</td>
+	<td class="summary">Capitalizes each word in a given string.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.center">_.center</a>&nbsp;(str, length, padStr)</td>
 	<td class="summary">Left and right pads a given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.charAt">_.charAt</a>&nbsp;(str)</td>
+	<td class="summary">Indexes a string like a table, returning a character.</td>
 	</tr>
 
 	<tr>
@@ -118,6 +148,11 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.explode">_.explode</a>&nbsp;(str)</td>
+	<td class="summary">Converts a given string to an array of chars.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.humanized">_.humanized</a>&nbsp;(str)</td>
 	<td class="summary">Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form </td>
 	</tr>
@@ -133,8 +168,28 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.index">_.index</a>&nbsp;(str)</td>
+	<td class="summary">Indexes a string like a table, returning a character.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.insert">_.insert</a>&nbsp;(str, index, substring)</td>
 	<td class="summary">Inserts substring at index position in a given string </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isANum">_.isANum</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string contains only alphabetic and digits.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isAlpha">_.isAlpha</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string contains only alphabetic characters </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isAlphaNumeric">_.isAlphaNumeric</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string contains only alphabetic and digits </td>
 	</tr>
 
 	<tr>
@@ -143,13 +198,48 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.isEmail">_.isEmail</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string matches a valid email address syntax.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isHex">_.isHex</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string can be converted to hex.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isHexadecimal">_.isHexadecimal</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string can be converted to hex </td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.isLower">_.isLower</a>&nbsp;(str)</td>
-	<td class="summary">Tests if a given string contains any upper-case character </td>
+	<td class="summary">Tests if a given string contains only upper-case characters </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isLowerCase">_.isLowerCase</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given string contains only upper-case characters.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isNum">_.isNum</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string contains only alphabetic characters.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isNumeric">_.isNumeric</a>&nbsp;(str)</td>
+	<td class="summary">Checks if a given string contains only alphabetic characters </td>
 	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#_.isUpper">_.isUpper</a>&nbsp;(str)</td>
-	<td class="summary">Tests if a given string contains any lower-case character </td>
+	<td class="summary">Tests if a given string contains only lower-case characters </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isUpperCase">_.isUpperCase</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given string contains only lower-case characters.</td>
 	</tr>
 
 	<tr>
@@ -159,7 +249,7 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#_.levenshtein">_.levenshtein</a>&nbsp;(strA, strB)</td>
-	<td class="summary">Returns the Levenshtein distance between stringA to stringB (See <a href="http://en.wikipedia.org/wiki/Levenshtein_distance" id="Levenshtein Distance on Wikipedia">Levenshtein Distance on Wikipedia</a>) </td>
+	<td class="summary">Returns the Levenshtein distance between stringA to stringB.</td>
 	</tr>
 
 	<tr>
@@ -190,6 +280,11 @@
 	<tr>
 	<td class="name" nowrap><a href="#_.lrpad">_.lrpad</a>&nbsp;(str, length, padStr)</td>
 	<td class="summary">Left and right pads a given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.next">_.next</a>&nbsp;(str, step)</td>
+	<td class="summary">Returns the successor of a given character or set of characters.</td>
 	</tr>
 
 	<tr>
@@ -233,8 +328,18 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.startsLowerCase">_.startsLowerCase</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given string starts with a lower-case character.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.startsUpper">_.startsUpper</a>&nbsp;(str)</td>
 	<td class="summary">Tests if a given string starts with an upper-case character </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.startsUpperCase">_.startsUpperCase</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given string starts with an upper-case character.</td>
 	</tr>
 
 	<tr>
@@ -374,6 +479,141 @@ a string
 
 
 
+<dt><a name="_.cap"></a><strong>_.cap</strong>&nbsp;(str, i, j)</dt>
+<dd>
+Capitalizes substring i to j in a given string. Alias for <tt>_.capitalize</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  i: a string. Defaults to 1 if not given. Can be negative (counting from right to left)
+	</li>
+	
+	<li>
+	  j: a string. Default to string length if not given. (counting from right to left)
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.cap('capitalized') --> 'CAPITALIZED' <br/> _.cap('capitalized',5,9) --> 'capiTALIZed' <br/> _.cap('capitalized',-8) --> 'capITALIZED' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capitalize">
+		_.capitalize
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.capEach"></a><strong>_.capEach</strong>&nbsp;(str)</dt>
+<dd>
+Capitalizes each word in a given string. Alias for <tt>_.capitalizesEach</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.capEach('my tailor is rich') --> 'My Tailor Is Rich' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capitalizesEach">
+		_.capitalizesEach
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.caps">
+		_.caps
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.capFirst"></a><strong>_.capFirst</strong>&nbsp;(str)</dt>
+<dd>
+Capitalizes the first character of a given string. Alias for <tt>_.capitalizeFirst</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.capFirst('uncapitalized') --> 'Uncapitalized' <br/> _.capFirst('Capitalized') -->  'Capitalized' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capitalizeFirst">
+		_.capitalizeFirst
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.capitalize"></a><strong>_.capitalize</strong>&nbsp;(str, i, j)</dt>
 <dd>
 Capitalizes substring i to j in a given string
@@ -400,7 +640,7 @@ Capitalizes substring i to j in a given string
 
 
 <h3>Usage:</h3>
-<pre class='example'> _.capitalize('capitalized') --> 'CAPITALIZED' <br/> _.capitalize('capitalized',5,9) --> 'capiTALIZed' <br/> print(_.capitalize('capitalized',-8) --> 'capITALIZED' </pre>
+<pre class='example'> _.capitalize('capitalized') --> 'CAPITALIZED' <br/> _.capitalize('capitalized',5,9) --> 'capiTALIZed' <br/> _.capitalize('capitalized',-8) --> 'capITALIZED' </pre>
 
 
 
@@ -408,6 +648,15 @@ Capitalizes substring i to j in a given string
 a string
 
 
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.cap">
+		_.cap
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -440,6 +689,105 @@ Capitalizes the first character of a given string
 a string
 
 
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capFirst">
+		_.capFirst
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.capitalizesEach"></a><strong>_.capitalizesEach</strong>&nbsp;(str)</dt>
+<dd>
+Capitalizes each word in a given string.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.capitalizesEach('my tailor is rich') --> 'My Tailor Is Rich' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capEach">
+		_.capEach
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.caps">
+		_.caps
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.caps"></a><strong>_.caps</strong>&nbsp;(str)</dt>
+<dd>
+Capitalizes each word in a given string. Alias for <tt>_.capitalizesEach</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.caps('my tailor is rich') --> 'My Tailor Is Rich' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capitalizesEach">
+		_.capitalizesEach
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.capEach">
+		_.capEach
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -484,8 +832,49 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.lrpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lrpad">
 		_.lrpad
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.charAt"></a><strong>_.charAt</strong>&nbsp;(str)</dt>
+<dd>
+Indexes a string like a table, returning a character. Alias for <tt>_.index</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.charAt('Hello',2) --> 'e'  <br/> _.charAt('Hello',10) --> nil </pre>
+
+
+
+<h3>Return value:</h3>
+i an index
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.index">
+		_.index
 	</a>
 	
 </ul>
@@ -525,7 +914,11 @@ an array
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.chop">
+	<li><a href="../files/Allen_Doc_Gen.html#_.explode">
+		_.explode
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.chop">
 		_.chop
 	</a>
 	
@@ -570,7 +963,7 @@ an array of strings
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.chars">
+	<li><a href="../files/Allen_Doc_Gen.html#_.chars">
 		_.chars
 	</a>
 	
@@ -721,6 +1114,47 @@ a boolean
 
 
 
+<dt><a name="_.explode"></a><strong>_.explode</strong>&nbsp;(str)</dt>
+<dd>
+Converts a given string to an array of chars. Alias for <tt>_.chars</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.explode('array') --> {'a','r','r','a','y'} </pre>
+
+
+
+<h3>Return value:</h3>
+an array
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.chars">
+		_.chars
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.humanized"></a><strong>_.humanized</strong>&nbsp;(str)</dt>
 <dd>
 Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form
@@ -812,6 +1246,47 @@ a boolean
 
 
 
+<dt><a name="_.index"></a><strong>_.index</strong>&nbsp;(str)</dt>
+<dd>
+Indexes a string like a table, returning a character.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.index('Hello',2) --> 'e'  <br/> _.index('Hello',10) --> nil </pre>
+
+
+
+<h3>Return value:</h3>
+i an index
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.charAt">
+		_.charAt
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.insert"></a><strong>_.insert</strong>&nbsp;(str, index, substring)</dt>
 <dd>
 Inserts substring at index position in a given string
@@ -852,6 +1327,120 @@ a string
 
 
 
+<dt><a name="_.isANum"></a><strong>_.isANum</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string contains only alphabetic and digits. Alias for <tt>_.isAlphaNumeric</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isANum('-33.2a') --> false <br/> _.isANum('33.2') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isAlphaNumeric">
+		_.isAlphaNumeric
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isAlpha"></a><strong>_.isAlpha</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string contains only alphabetic characters
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isAlpha('text') --> true <br/> _.isAlpha('text1')  --> false <br/> _.isAlpha('te xt~')  --> false </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+</dd>
+
+
+
+
+<dt><a name="_.isAlphaNumeric"></a><strong>_.isAlphaNumeric</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string contains only alphabetic and digits
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isAlphaNumeric('-33.2a') --> false <br/> _.isAlphaNumeric('33.2') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isANum">
+		_.isANum
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.isBlank"></a><strong>_.isBlank</strong>&nbsp;(str)</dt>
 <dd>
 Checks if a given string contains any alphanumeric character
@@ -884,9 +1473,9 @@ a boolean
 
 
 
-<dt><a name="_.isLower"></a><strong>_.isLower</strong>&nbsp;(str)</dt>
+<dt><a name="_.isEmail"></a><strong>_.isEmail</strong>&nbsp;(str)</dt>
 <dd>
-Tests if a given string contains any upper-case character
+Checks if a given string matches a valid email address syntax. See <a href="http://en.wikipedia.org/wiki/Email_address" id="Email Addresses on Wikipedia">Email Addresses on Wikipedia</a>
 
 
 <h3>Parameters</h3>
@@ -902,12 +1491,12 @@ Tests if a given string contains any upper-case character
 
 
 <h3>Usage:</h3>
-<pre class='example'> _.isLower('String') --> false <br/> _.isLower('strinG') --> false <br/> print(_.isLower('string') --> true </pre>
+<pre class='example'> _.isEmail('@') --> false <br/> _.isEmail('.com') --> false <br/> _.isEmail('a@com') --> false <br/> _.isEmail('~user..nm.@web.co.uk') --> false <br/> _.isEmail('user.nm@web.co.uk') --> true </pre>
 
 
 
 <h3>Return value:</h3>
-a string
+a boolean
 
 
 
@@ -916,9 +1505,255 @@ a string
 
 
 
+<dt><a name="_.isHex"></a><strong>_.isHex</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string can be converted to hex. Alias for <tt>_.isHexadecimal</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isHex('-33.2') --> false <br/> _.isHex('FDA') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isHexadecimal">
+		_.isHexadecimal
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isHexadecimal"></a><strong>_.isHexadecimal</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string can be converted to hex
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isHexadecimal('-33.2') --> false <br/> _.isHexadecimal('FDA') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isHex">
+		_.isHex
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isLower"></a><strong>_.isLower</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given string contains only upper-case characters
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isLower('String') --> false <br/> _.isLower('strinG') --> false <br/> _.isLower('string') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLowerCase">
+		_.isLowerCase
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isLowerCase"></a><strong>_.isLowerCase</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given string contains only upper-case characters. Alias for <tt>_.isLower</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isLowerCase('String') --> false <br/> _.isLowerCase('strinG') --> false <br/> _.isLowerCase('string') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLower">
+		_.isLower
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isNum"></a><strong>_.isNum</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string contains only alphabetic characters. Alias for <tt>_.isNumeric</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isNum('1e20')--> true <br/> _.isNum('-33.2a') --> false </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isNumeric">
+		_.isNumeric
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isNumeric"></a><strong>_.isNumeric</strong>&nbsp;(str)</dt>
+<dd>
+Checks if a given string contains only alphabetic characters
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isNumeric('1e20')--> true <br/> _.isNumeric('-33.2a') --> false </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isNum">
+		_.isNum
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.isUpper"></a><strong>_.isUpper</strong>&nbsp;(str)</dt>
 <dd>
-Tests if a given string contains any lower-case character
+Tests if a given string contains only lower-case characters
 
 
 <h3>Parameters</h3>
@@ -942,6 +1777,56 @@ Tests if a given string contains any lower-case character
 a string
 
 
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isUpperCase">
+		_.isUpperCase
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isUpperCase"></a><strong>_.isUpperCase</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given string contains only lower-case characters. Alias for <tt>_.isUpper</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isUpperCase('String') --> false <br/> _.isUpperCase('sTRinG') --> false <br/> _.isUpperCase('STRING') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isUpper">
+		_.isUpper
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -986,7 +1871,7 @@ a string
 
 <dt><a name="_.levenshtein"></a><strong>_.levenshtein</strong>&nbsp;(strA, strB)</dt>
 <dd>
-Returns the Levenshtein distance between stringA to stringB (See <a href="http://en.wikipedia.org" id="Levenshtein Distance on Wikipedia">Levenshtein Distance on Wikipedia</a>)
+Returns the Levenshtein distance between stringA to stringB. See <a href="http://en.wikipedia.org/wiki/Levenshtein_distance" id="Levenshtein Distance on Wikipedia">Levenshtein Distance on Wikipedia</a>
 
 
 <h3>Parameters</h3>
@@ -1090,7 +1975,7 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.rpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.rpad">
 		_.rpad
 	</a>
 	
@@ -1211,15 +2096,15 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.pad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.pad">
 		_.pad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.rpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.rpad">
 		_.rpad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.lrpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lrpad">
 		_.lrpad
 	</a>
 	
@@ -1268,16 +2153,61 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.pad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.pad">
 		_.pad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.lpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lpad">
 		_.lpad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.rpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.rpad">
 		_.rpad
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.next"></a><strong>_.next</strong>&nbsp;(str, step)</dt>
+<dd>
+Returns the successor of a given character or set of characters. Alias for <tt>_.succ</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  step: If given, returns the step-th successor of the given string. Defaults to 1 if not given.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.next('a') --> 'b' <br/> _.next('wxy') --> 'xyz' <br/> _.next('D',3) --> 'G' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.succ">
+		_.succ
 	</a>
 	
 </ul>
@@ -1329,15 +2259,15 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.lpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lpad">
 		_.lpad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.rpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.rpad">
 		_.rpad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.lrpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lrpad">
 		_.lrpad
 	</a>
 	
@@ -1494,7 +2424,7 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.lpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lpad">
 		_.lpad
 	</a>
 	
@@ -1543,15 +2473,15 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen.html#_.pad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.pad">
 		_.pad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.lpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lpad">
 		_.lpad
 	</a>
 	
-	<li><a href="../files/Allen.html#_.lrpad">
+	<li><a href="../files/Allen_Doc_Gen.html#_.lrpad">
 		_.lrpad
 	</a>
 	
@@ -1633,6 +2563,56 @@ a string
 
 
 
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.startsLowerCase">
+		_.startsLowerCase
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.startsLowerCase"></a><strong>_.startsLowerCase</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given string starts with a lower-case character. Alias for <tt>_.startsLower</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.startsLowerCase('String') --> false <br/> _.startsLowerCase('sTRinG') --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.startsLower">
+		_.startsLower
+	</a>
+	
+</ul>
+
 </dd>
 
 
@@ -1656,7 +2636,7 @@ Tests if a given string starts with an upper-case character
 
 
 <h3>Usage:</h3>
-<pre class='example'> _.startsLower('String') --> false <br/> _.startsLower('sTRinG') --> true </pre>
+<pre class='example'> _.startsUpper('String') --> true <br/> _.startsUpper('sTRinG') --> false </pre>
 
 
 
@@ -1664,6 +2644,56 @@ Tests if a given string starts with an upper-case character
 a string
 
 
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.startsUpperCase">
+		_.startsUpperCase
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.startsUpperCase"></a><strong>_.startsUpperCase</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given string starts with an upper-case character. Alias for <tt>_.startsUpper</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.startsUpperCase('String') --> true <br/> _.startsUpperCase('sTRinG') --> false </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.startsUpper">
+		_.startsUpper
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -1880,6 +2910,15 @@ Returns the successor of a given character or set of characters
 a string
 
 
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.next">
+		_.next
+	</a>
+	
+</ul>
 
 </dd>
 

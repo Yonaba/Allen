@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
--- Allen Library
--- Release Id: Allen.lua,v 0.1 07/24/2012
+-- @author Roland Yonaba
+-- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 --Copyright (c) 2012 Roland Yonaba
@@ -36,6 +36,8 @@ local min = math.min
 local type = type
 local t_concat = table.concat
 local t_insert = table.insert
+local tonumber = tonumber
+local getfenv = getfenv
 
 ------------------------------------------------------------------
 -- Arithmetic metamethods for strings
@@ -51,6 +53,16 @@ function mtstr.__mod(a,b)
 	local _chopped = _.chop(a,b)
 	return ((#a)%b==0) and nil or _chopped[#_chopped]
 end
+local old_mtIndex = mtstr.__index
+function mtstr.__index(str,i)
+	if type(i)=='number' then
+		local char = str:sub(i,i)
+		return (char and char~='') and char or nil
+	elseif type(old_mtIndex) == 'table' then return old_mtIndex[i]
+	else return old_mtIndex(str,i)
+	end
+end
+
 
 ------------------------------------------------------------------
 -- Private Helpers
@@ -99,6 +111,14 @@ end
 
 -- Capitalizes the first character of a given string
 function _.capitalizeFirst(str) return (str:lower():gsub('^%l', string.upper)) end
+_.capFirst = _.capitalizeFirst
+
+-- Capitalizes each word in a string
+function _.capitalizesEach(str)
+	return str:gsub("(%w[%w]*)",function (match) return _.capFirst(match) end)
+end
+_.capEach = _.capitalizesEach
+_.caps = _.capitalizesEach
 
 -- Capitalizes substring i to j in a given string
 function _.capitalize(str,i,j)
@@ -106,6 +126,7 @@ function _.capitalize(str,i,j)
 	if not i then i,j = 1,#str end
 	return (str:gsub((str:sub(i,j)),(str:sub(i,j)):upper()))
 end
+_.cap = _.capitalize
 
 -- Lowers the first character case in a given string
 function _.lowerFirst(str) return (str:gsub('^%u', string.lower)) end
@@ -120,15 +141,19 @@ end
 
 -- Tests if a given string contains any upper-case character
 function _.isLower(str) return not str:find('%u') end
+_.isLowerCase = _.isLower
 
 -- Tests if a given string contains any lower-case character
 function _.isUpper(str) return not str:find('%l') end
+_.isUpperCase = _.isUpper
 
 -- Tests if a given string starts with a lower-case character
 function _.startsLower(str) return _.isLower(str:sub(1,1)) end
+_.startsLowerCase = _.startsLower
 
 -- Tests if a given starts with an upper-case character
 function _.startsUpper(str) return _.isUpper(str:sub(1,1)) end
+_.startsUpperCase = _.startsUpper
 
 -- Swaps the case of each characters in substring i-j inside a given string
 function _.swapCase(str,i,j)
@@ -191,6 +216,41 @@ function _.chars(str)
 	for char in str:gmatch('.') do t_insert(_chars,char) end
 	return #_chars>0 and _chars or nil
 end
+_.explode = _.chars
+
+-- Checks if a given string features only alphabetic characters
+function _.isAlpha(str)	return not str:find('%A') end
+
+-- Checks if a given string features only digits
+function _.isNumeric(str) return tonumber(str) and true or false end
+
+-- Checks if a given string features alphanumeric characters
+function _.isAlphaNumeric(str) return not str:find('%W') end
+
+-- Checks if a given string is hex
+function _.isHex(str) return tonumber(str,16) and true or false end
+_.isHexadecimal = _.isHex
+
+function _.index(str,i) return str[i] end
+_.charAt = _.index
+
+-- Checks if a given string matches an email address syntax
+function _.isEmail(str)
+	local nAt = _.count(str,'@')
+	if nAt > 1 or nAt == 0 or str:len() > 254 then return false end
+	local localPart = _.strLeft(str,'@')
+	local domainPart = _.strRight(str,'@')
+	if not localPart or not domainPart then return false end
+
+	if not localPart:match("[%w!#%$%%&'%*%+%-/=%?^_`{|}~]+") or (localPart:len() > 64) then return false end
+	if _.startsWith(localPart,'%.+') or _.endsWith(localPart,'%.+') or localPart:find('%.%.+') then return false end
+
+	if not domainPart:match('[%w%-_]+%.%a%a+$') or domainPart:len() > 253 then return false end
+	local fDomain = _.strLeftBack(domainPart,'%.')
+	if _.startsWith(fDomain,'[_%-%.]+') or _.endsWith(fDomain,'[_%-%.]+') or fDomain:find('%.%.+') then return false end
+
+	return true
+end
 
 -- Returns the number of substring occurences in a given string
 function _.count(str,sub) return select(2,str:gsub(sub,sub)) end
@@ -226,6 +286,7 @@ function _.endsWith(str,ends) return (str:find(ends..'$')) and true or false end
 
 -- Returns the successor of a given character or set of characters
 function _.succ(str,step) return (str:gsub('.',function(match) return preOrSucc(match,step or 1) end)) end
+_.next = _.succ
 
 -- Returns the predecessor of a given character or set of characters
 function _.pre(str,step) return (str:gsub('.',function(match) return preOrSucc(match,step and -step or -1) end)) end
@@ -297,17 +358,24 @@ _.center = _.lrpad
 -- Returns the substring after the first pattern occurence in a given string
 function _.strRight(str,pattern)
 	local s,e = str:find(pattern)
-	if e then return str:sub(e+1) end
+	local ret
+	if e then
+		ret =  str:sub(e+1)
+		return ret~='' and ret or nil
+	end
 	return nil
 end
 
 -- Returns the substring after the last pattern occurence in a given string
 function _.strRightBack(str,pattern)
-	local _str,s,e
+	local _str,s,e,ret
 	for i = -1,-(#str),-1 do
 		_str = str:sub(i)
 		s,e = _str:find(pattern)
-		if e then return _str:sub(e+1) end
+		if e then
+			ret = _str:sub(e+1)
+			return ret~='' and ret or nil
+		end
 	end
 	return nil
 end
@@ -315,17 +383,25 @@ end
 -- Returns the substring before the first pattern occurence in a given string
 function _.strLeft(str,pattern)
 	local s,e = str:find(pattern)
-	if s then return str:sub(1,s-1) end
+	print('pattern found',s,e)
+	local ret
+	if s then
+		ret = str:sub(1,s-1)
+		return ret~='' and ret or nil
+		end
 	return nil
 end
 
 -- Returns the substring before the last pattern occurence in a given string
 function _.strLeftBack(str,pattern)
-	local _str,s,e
+	local _str,s,e,ret
 	for i = -1,-(#str),-1 do
 		_str = str:sub(i)
 		s,e = _str:find(pattern)
-		if s then return str:sub(1,#str+i) end
+		if s then
+			ret = str:sub(1,#str+i)
+			return ret~='' and ret or nil
+		end
 	end
 	return nil
 end
@@ -363,9 +439,9 @@ end
 -- Imports functions inside string library
 function _.import()
 	local methods = functions(_)
-	local excluded = {'join', 'toSentence','mixin'}
-	for k,v in ipairs(methods) do
-		if not findValue(excluded,v) then string[v] = _[v] end
+	local excluded = {join = true, toSentence = true,import = true}
+	for i,v in ipairs(methods) do
+		if not excluded[v] then getfenv().string[v] = _[v] end
 	end
 end
 

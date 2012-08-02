@@ -35,6 +35,17 @@ Compatible operators are : __+,*,/,%,^,-.__
 * Division operator (/) : used for chopping strings (dividing it in subsets strings)
 * Modulo operator (%) : returns the remainder subset string after a chopping process.
 
+Strings can also be indexed, like regular Lua tables.
+
+    for i = 1,5 do 
+	    print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
+	end
+    => Accessing Hello[1] :	H
+    => Accessing Hello[2] :	e
+    => Accessing Hello[3] :	l
+    => Accessing Hello[4] :	l
+    => Accessing Hello[5] :	o
+
 See [Allen_StringOp_Test.lua][] for more details.
 	
 ##API Overview##

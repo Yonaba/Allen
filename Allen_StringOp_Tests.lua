@@ -1,3 +1,8 @@
+--------------------------------------------------------------------------
+-- @author Roland Yonaba
+-- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+--------------------------------------------------------------------------
+
 -- Copyright (c) 2012 Roland Yonaba
 
 --[[
@@ -45,3 +50,8 @@ print('Programming'%3)
 
 print("\n'-' Operator reverses a given string. It is NOT commutative.")
 print(-'Lua')
+
+print(' \n==== Indexing Strings ==== \n')
+
+print("Strings can now be indexed as tables.")
+for i = 1,5 do print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) end
