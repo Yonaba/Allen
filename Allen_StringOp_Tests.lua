@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 -- Copyright (c) 2012 Roland Yonaba
@@ -55,3 +55,8 @@ print(' \n==== Indexing Strings ==== \n')
 
 print("Strings can now be indexed as tables.")
 for i = 1,5 do print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) end
+
+print("Strings can now be called as functions.")
+print(("Hello")(3))
+print(("Hello")(2,5))
+print(("Hello")(3,'r'))

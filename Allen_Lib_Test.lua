@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 -- Copyright (c) 2012 Roland Yonaba
@@ -222,6 +222,30 @@ addSnippet('_.clean(str,pat)',
 [[print(_.clean('H_; e\nl\rl^o'))
 ]])
 
+addSnippet('_.trim(str,pat)',
+[[print(_.trim('H_; e\nl\rl^o'))
+]])
+
+addSnippet('_.escape(str)',
+[[print(_.escape('Hel%-l^(o)'))
+]])
+
+addSnippet('_.esc(str)',
+[[print(_.esc('Hel%-l^(o)'))
+]])
+
+addSnippet('_.substitute(str,value)',
+[[local x,y = 0,0
+print(_.substitute("x = ${x}",x))
+print(_.substitute("y = $y",y))
+]])
+
+addSnippet('_.subst(str,value)',
+[[local x,y = 0,0
+print(_.subst("x = ${x}",x))
+print(_.subst("y = $y",y))
+]])
+
 addSnippet('_.includes(str,sub)',
 [[print(_.includes('Programming','mmi'))
 ]])
@@ -390,6 +414,83 @@ print('- Billy '.._.quote('The Kid')..' ?')
 addSnippet('_.bytes(str)',
 [[table.foreach(_.bytes('a'),print)
 table.foreach(_.bytes('hello'),print)
+]])
+
+addSnippet('_.byteAt(str,i)',
+[[local str = 'Hello'
+for i = 1,#str do
+	print(_.byteAt(str,i))
+end
+]])
+
+addSnippet('_.isLuaKeyword(str)',
+[[print(_.isLuaKeyword("and"))
+print(_.isLuaKeyword("then"))
+]])
+
+addSnippet('_.isLuaKword(str)',
+[[print(_.isLuaKword("false"))
+print(_.isLuaKword("do"))
+]])
+
+addSnippet('_.isReserved(str)',
+[[print(_.isReserved("if"))
+print(_.isReserved("end"))
+]])
+
+addSnippet('_.isToken(str)',
+[[print(_.isToken("%"))
+print(_.isToken(">="))
+print(_.isToken(".."))
+]])
+
+addSnippet('_.isOperator(str)',
+[[print(_.isOperator("/"))
+print(_.isOperator("<"))
+print(_.isOperator("+"))
+]])
+
+addSnippet('_.isOp(str)',
+[[print(_.isOp("-"))
+print(_.isOp("{"))
+print(_.isOp("]"))
+]])
+
+addSnippet('_.isIdentifier(str)',
+[[print(_.isIdentifier("1x"))
+print(_.isIdentifier("x_1"))
+print(_.isIdentifier("_"))
+]])
+
+addSnippet('_.isIden(str)',
+[[print(_.isIden("var"))
+print(_.isIden("else"))
+print(_.isIden("Else"))
+]])
+
+addSnippet('_.isName(str)',
+[[print(_.isName("then"))
+print(_.isName("_my_"))
+]])
+
+addSnippet('_.is(var,expectedType)',
+[[print(_.is(nil,'nil'))
+print(_.is({}))
+print(_.is(false,'true'))
+]])
+
+addSnippet('_.statistics(str,pat)',
+[[local t = _.statistics('Hello')
+table.foreach(t,print)
+t = _.statistics('my tailor is rich','%w+')
+table.foreach(t,print)
+]])
+
+addSnippet('_.stats(str,pat)',
+[[local t = _.stats('Hello')
+table.foreach(t,print)
+t = _.stats('my tailor is rich','%w+')
+table.foreach(t,print)
 ]])
 
 addSnippet('_.import()',

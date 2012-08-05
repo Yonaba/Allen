@@ -35,7 +35,8 @@ Compatible operators are : __+,*,/,%,^,-.__
 * Division operator (/) : used for chopping strings (dividing it in subsets strings)
 * Modulo operator (%) : returns the remainder subset string after a chopping process.
 
-Strings can also be indexed, like regular Lua tables.
+##Strings Indexing##
+Using __Allen__, strings can be indexed, like regular Lua tables.
 
     for i = 1,5 do 
 	    print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
@@ -45,6 +46,27 @@ Strings can also be indexed, like regular Lua tables.
     => Accessing Hello[3] :	l
     => Accessing Hello[4] :	l
     => Accessing Hello[5] :	o
+
+##Strings as functions##
+Once __Allen__ is loaded inside a project, strings can be called as functions.
+
+    local s = 'Hello'
+	print(s()) --> 'Hello'
+	
+Passing a positive number <tt>i</tt> as the first argument will return the character at the corresponding index
+
+    local s = 'Hello'
+	print(s(2)) --> 'e'
+	
+Passing a number <tt>j</tt> as a second argument will return the substring between <tt>i</tt> and <tt>j</tt>
+
+    local s = 'Hello'
+	print(s(2,4)) --> 'ell'
+	
+Passing a character as a second argument will replace the character at index <tt>i</tt>
+
+    local s = 'Helo'
+	print(s(3,'r')) --> 'Hero'
 
 See [Allen_StringOp_Test.lua][] for more details.
 	

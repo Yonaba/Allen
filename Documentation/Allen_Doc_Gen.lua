@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------
 -- Set of utility functions for strings
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 --Copyright (c) 2012 Roland Yonaba
@@ -353,7 +353,139 @@ function _.chop(str,step) end
 -- _.clean('H_; e\nl\rl^o') --> 'Hello' <br/>
 -- _.clean('Lua','%u') --> 'ua'
 -- </pre>
+-- @see _.trim
 function _.clean(str,pat) end
+
+--- Clears all special characters or characters matching a given pattern inside a given string. Alias for <tt>_.clean</tt>
+-- @param str a string
+-- @param pat a pattern matching string to be cleaned from the original string. If not given, will clean non-alphanumeric characters.
+-- @return a string
+-- @usage <pre class='example'> 
+-- _.trim('H_; e\nl\rl^o') --> 'Hello' <br/>
+-- _.trim('Lua','%u') --> 'ua'
+-- </pre>
+-- @see _.clean
+function _.trim(str,pat) end
+
+--- Returns a table listing counts for each matching to a given pattern
+-- @param str a string
+-- @param pat a pattern matching string
+-- @return an array
+-- @usage <pre class='example'>
+-- _.statistics('Hello') <br/>
+-- => e	1 <br/>
+-- => H	1 <br/>
+-- => o	1 <br/>
+-- => l	2 <br/>
+-- _.statistics('my tailor is rich','%w+') <br/>
+-- => my	1 <br/>
+-- => rich	1 <br/>
+-- => is	1 <br/>
+-- => tailor	1
+-- </pre> 
+-- @see _.stats
+function _.statistics(str,pat) end
+
+--- Returns a table listing counts for each matching to a given pattern. Alias for <tt>_.statistics</tt>
+-- @param str a string
+-- @param pat a pattern matching string
+-- @return an array
+-- @usage <pre class='example'>
+-- _.stats('Hello') <br/>
+-- => e	1 <br/>
+-- => H	1 <br/>
+-- => o	1 <br/>
+-- => l	2 <br/>
+-- _.stats('my tailor is rich','%w+') <br/>
+-- => my	1 <br/>
+-- => rich	1 <br/>
+-- => is	1 <br/>
+-- => tailor	1
+-- </pre> 
+-- @see _.statistics
+function _.stats(str,pat) end
+
+-- @param str a string
+-- @return a string
+-- @usage <pre class='example'> 
+-- _.escape('Hel%-l^(o)') --> 'Hel%%%-l%^%(o%)'
+-- </pre>
+-- @see _.esc
+function _.escape(str) end
+
+
+--- Escapes any of the magic characters (^$()%.[]*+-?) in the given string
+-- @param str a string
+-- @return a string
+-- @usage <pre class='example'> 
+-- _.escape('Hel%-l^(o)') --> 'Hel%%%-l%^%(o%)'
+-- </pre>
+-- @see _.esc
+function _.escape(str) end
+
+--- Escapes any of the magic characters (^$()%.[]*+-?) in the given string. Alias for <tt>_.esc</tt>
+-- @param str a string
+-- @return a string
+-- @usage <pre class='example'> 
+-- _.esc('Hel%-l^(o)') --> 'Hel%%%-l%^%(o%)'
+-- </pre>
+-- @see _.escape
+function _.esc(str) end
+
+--- Substitutes any sequence matching ${var} or $var pattern-like with a given value
+-- @param str a string
+-- @return a string
+-- @usage <pre class='example'>
+-- local x,y = 0,0 <br/>
+-- _.substitute("x = ${x}",x) --> x = 0 <br/>
+-- _.substitute("y = $y",y) --> y = 0
+-- </pre>
+-- @see _.substitute
+function _.substitute(str) end
+
+--- Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
+-- @param str a string
+-- @return a string
+-- @usage <pre class='example'>
+-- local x,y = 0,0 <br/>
+-- _.subst("x = ${x}",x) --> x = 0 <br/>
+-- _.subst("y = $y",y) --> y = 0
+-- </pre>
+-- @see _.substitute
+function _.subst(str) end
+
+--- Checks if the given string is a Lua reserved keyword
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'>
+-- _.isLuaKeyword("false") --> true <br/>
+-- _.isLuaKeyword("do") --> true
+-- </pre>
+-- @see _.isLuaKword
+-- @see _.isReserved
+function _.isLuaKeyword(str) end
+
+--- Checks if the given string is a Lua reserved keyword. Alias for <tt>_.isLuaKeyword</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'>
+-- _.isLuaKword("and") --> true <br/>
+-- _.isLuaKword("then") --> true
+-- </pre>
+-- @see _.isLuaKeyword
+-- @see _.isReserved
+function _.isLuaKword(str) end
+
+--- Checks if the given string is a Lua reserved keyword. Alias for <tt>_.isLuaKeyword</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'>
+-- _.isReserved("if") --> true <br/>
+-- _.isReserved("end") --> true
+-- </pre>
+-- @see _.isLuaKeyword
+-- @see _.isLuaKword
+function _.isReserved(str) end
 
 --- Tests if a given substring is included in a given string
 -- @param str a string
@@ -363,6 +495,94 @@ function _.clean(str,pat) end
 -- _.includes('Programming','mmi') --> true
 -- </pre>
 function _.includes(str,sub) end
+
+--- Tests if a given substring is a Lua token (operator)
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isToken("%") --> true <br/>
+-- _.isToken(">=") --> true <br/>
+-- _.isToken("..") --> true
+-- </pre>
+-- @see _.isOperator
+-- @see _.isOp
+function _.isToken(str) end
+
+--- Tests if a given substring is a Lua token (operator). Alias for <tt>_.isToken</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isOperator("%") --> true <br/>
+-- _.isOperator(">=") --> true <br/>
+-- _.isOperator("..") --> true
+-- </pre>
+-- @see _.isToken
+-- @see _.isOp
+function _.isOperator(str) end
+
+--- Tests if a given substring is a Lua token (operator). Alias for <tt>_.isToken</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isOp("%") --> true <br/>
+-- _.isOp(">=") --> true <br/>
+-- _.isOp("..") --> true
+-- </pre>
+-- @see _.isToken
+-- @see _.isOperator
+function _.isOp(str) end
+
+--- Tests if a given substring can be an valid Lua identifier
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isIdentifier("1x") --> false <br/>
+-- _.isIdentifier("x_1") --> true <br/>
+-- _.isIdentifier("_") --> true
+-- </pre>
+-- @see _.isIden
+-- @see _.isName
+function _.isIdentifier(str) end
+
+--- Tests if a given substring can be an valid Lua identifier. Alias for <tt>_.isIdentifier</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isIden("var") --> true <br/>
+-- _.isIden("else") --> false <br/>
+-- _.isIden("Else") --> true
+-- </pre>
+-- @see _.isIdentifier
+-- @see _.isName
+function _.isIden(str) end
+
+--- Tests if a given substring can be an valid Lua identifier. Alias for <tt>_.isIdentifier</tt>
+-- @param str a string
+-- @return a boolean
+-- @usage <pre class='example'> 
+-- _.isName("then") --> false <br/>
+-- _.isName("_my_") --> true
+-- </pre>
+-- @see _.isIdentifier
+-- @see _.isIden
+function _.isName(str) end
+
+--- Returns the Ascii code of the i-th character in the given string
+-- @param str a string
+-- @param i an index
+-- @return a number
+-- @usage <pre class='example'> 
+-- local str = 'Hello' <br/>
+-- for i = 1,#str do <br/>
+--    print(_.byteAt(str,i)) <br/>
+-- end <br/>
+-- => 72 <br/>
+-- => 101 <br/>
+-- => 108 <br/>
+-- => 108 <br/>
+-- => 111
+-- </pre>
+function _.byteAt(str,i) end
 
 --- Converts a given string to an array of chars
 -- @param str a string

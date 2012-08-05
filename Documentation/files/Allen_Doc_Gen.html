@@ -38,7 +38,7 @@
 <h1>Files</h1>
 <ul>
 
-	<li><strong>Allen</strong></li>
+	<li><strong>Allen.lua</strong></li>
 	
 </ul>
 
@@ -50,9 +50,9 @@
 </div> <!-- id="navigation" -->
 
 <div id="content">
-<p><small><b>Release:</b> $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$ </small></p>
-<h1>File <code>Allen.lua</code></h1>
 
+<h1>File <code>Allen.lua</code></h1>
+<p><small><b>Release:</b> $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$ </small></p>
 
 
 
@@ -61,6 +61,11 @@
 
 <h2>Functions</h2>
 <table class="function_list">
+
+	<tr>
+	<td class="name" nowrap><a href="#_.byteAt">_.byteAt</a>&nbsp;(str, i)</td>
+	<td class="summary">Returns the Ascii code of the i-th character in the given string </td>
+	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#_.bytes">_.bytes</a>&nbsp;(str)</td>
@@ -148,6 +153,16 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.esc">_.esc</a>&nbsp;(str)</td>
+	<td class="summary">Escapes any of the magic characters (^$()%.[]*+-?) in the given string.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.escape">_.escape</a>&nbsp;(str)</td>
+	<td class="summary">Escapes any of the magic characters (^$()%.[]*+-?) in the given string </td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.explode">_.explode</a>&nbsp;(str)</td>
 	<td class="summary">Converts a given string to an array of chars.</td>
 	</tr>
@@ -213,6 +228,16 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.isIden">_.isIden</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring can be an valid Lua identifier.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isIdentifier">_.isIdentifier</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring can be an valid Lua identifier </td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.isLower">_.isLower</a>&nbsp;(str)</td>
 	<td class="summary">Tests if a given string contains only upper-case characters </td>
 	</tr>
@@ -223,6 +248,21 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.isLuaKeyword">_.isLuaKeyword</a>&nbsp;(str)</td>
+	<td class="summary">Checks if the given string is a Lua reserved keyword </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isLuaKword">_.isLuaKword</a>&nbsp;(str)</td>
+	<td class="summary">Checks if the given string is a Lua reserved keyword.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isName">_.isName</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring can be an valid Lua identifier.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.isNum">_.isNum</a>&nbsp;(str)</td>
 	<td class="summary">Checks if a given string contains only alphabetic characters.</td>
 	</tr>
@@ -230,6 +270,26 @@
 	<tr>
 	<td class="name" nowrap><a href="#_.isNumeric">_.isNumeric</a>&nbsp;(str)</td>
 	<td class="summary">Checks if a given string contains only alphabetic characters </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isOp">_.isOp</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring is a Lua token (operator).</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isOperator">_.isOperator</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring is a Lua token (operator).</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isReserved">_.isReserved</a>&nbsp;(str)</td>
+	<td class="summary">Checks if the given string is a Lua reserved keyword.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.isToken">_.isToken</a>&nbsp;(str)</td>
+	<td class="summary">Tests if a given substring is a Lua token (operator) </td>
 	</tr>
 
 	<tr>
@@ -348,6 +408,16 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.statistics">_.statistics</a>&nbsp;(str, pat)</td>
+	<td class="summary">Returns a table listing counts for each matching to a given pattern </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.stats">_.stats</a>&nbsp;(str, pat)</td>
+	<td class="summary">Returns a table listing counts for each matching to a given pattern.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.strLeft">_.strLeft</a>&nbsp;(str, pattern)</td>
 	<td class="summary">Returns the substring before the first given pattern matching occurence in a given string </td>
 	</tr>
@@ -368,6 +438,16 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_.subst">_.subst</a>&nbsp;(str)</td>
+	<td class="summary">Substitutes any sequence matching ${var} or $var pattern-like with a given value.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.substitute">_.substitute</a>&nbsp;(str)</td>
+	<td class="summary">Substitutes any sequence matching ${var} or $var pattern-like with a given value </td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_.succ">_.succ</a>&nbsp;(str, step)</td>
 	<td class="summary">Returns the successor of a given character or set of characters </td>
 	</tr>
@@ -385,6 +465,11 @@
 	<tr>
 	<td class="name" nowrap><a href="#_.toSentence">_.toSentence</a>&nbsp;(array, delimiter, lastDelimiter)</td>
 	<td class="summary">Converts an array of strings into a human-readable string </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.trim">_.trim</a>&nbsp;(str, pat)</td>
+	<td class="summary">Clears all special characters or characters matching a given pattern inside a given string.</td>
 	</tr>
 
 	<tr>
@@ -412,6 +497,42 @@
 
 <h2><a name="functions"></a>Functions</h2>
 <dl class="function">
+
+
+
+<dt><a name="_.byteAt"></a><strong>_.byteAt</strong>&nbsp;(str, i)</dt>
+<dd>
+Returns the Ascii code of the i-th character in the given string
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  i: an index
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> local str = 'Hello' <br/> for i = 1,#str do <br/> print(_.byteAt(str,i)) <br/> end <br/> => 72 <br/> => 101 <br/> => 108 <br/> => 108 <br/> => 111 </pre>
+
+
+
+<h3>Return value:</h3>
+a number
+
+
+
+</dd>
+
 
 
 
@@ -1005,6 +1126,15 @@ a string
 
 
 
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.trim">
+		_.trim
+	</a>
+	
+</ul>
+
 </dd>
 
 
@@ -1108,6 +1238,88 @@ Tests if a given string ends with a given pattern
 a boolean
 
 
+
+</dd>
+
+
+
+
+<dt><a name="_.esc"></a><strong>_.esc</strong>&nbsp;(str)</dt>
+<dd>
+Escapes any of the magic characters (^$()%.[]*+-?) in the given string. Alias for <tt>_.esc</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.esc('Hel%-l^(o)') --> 'Hel%%%-l%^%(o%)' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.escape">
+		_.escape
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.escape"></a><strong>_.escape</strong>&nbsp;(str)</dt>
+<dd>
+Escapes any of the magic characters (^$()%.[]*+-?) in the given string
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.escape('Hel%-l^(o)') --> 'Hel%%%-l%^%(o%)' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.esc">
+		_.esc
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -1587,6 +1799,96 @@ a boolean
 
 
 
+<dt><a name="_.isIden"></a><strong>_.isIden</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring can be an valid Lua identifier. Alias for <tt>_.isIdentifier</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isIden("var") --> true <br/> _.isIden("else") --> false <br/> _.isIden("Else") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isIdentifier">
+		_.isIdentifier
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isName">
+		_.isName
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isIdentifier"></a><strong>_.isIdentifier</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring can be an valid Lua identifier
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isIdentifier("1x") --> false <br/> _.isIdentifier("x_1") --> true <br/> _.isIdentifier("_") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isIden">
+		_.isIden
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isName">
+		_.isName
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.isLower"></a><strong>_.isLower</strong>&nbsp;(str)</dt>
 <dd>
 Tests if a given string contains only upper-case characters
@@ -1669,6 +1971,141 @@ a string
 
 
 
+<dt><a name="_.isLuaKeyword"></a><strong>_.isLuaKeyword</strong>&nbsp;(str)</dt>
+<dd>
+Checks if the given string is a Lua reserved keyword
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isLuaKeyword("false") --> true <br/> _.isLuaKeyword("do") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLuaKword">
+		_.isLuaKword
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isReserved">
+		_.isReserved
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isLuaKword"></a><strong>_.isLuaKword</strong>&nbsp;(str)</dt>
+<dd>
+Checks if the given string is a Lua reserved keyword. Alias for <tt>_.isLuaKeyword</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isLuaKword("and") --> true <br/> _.isLuaKword("then") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLuaKeyword">
+		_.isLuaKeyword
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isReserved">
+		_.isReserved
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isName"></a><strong>_.isName</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring can be an valid Lua identifier. Alias for <tt>_.isIdentifier</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isName("then") --> false <br/> _.isName("_my_") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isIdentifier">
+		_.isIdentifier
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isIden">
+		_.isIden
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.isNum"></a><strong>_.isNum</strong>&nbsp;(str)</dt>
 <dd>
 Checks if a given string contains only alphabetic characters. Alias for <tt>_.isNumeric</tt>
@@ -1742,6 +2179,186 @@ a boolean
 	
 	<li><a href="../files/Allen_Doc_Gen.html#_.isNum">
 		_.isNum
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isOp"></a><strong>_.isOp</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring is a Lua token (operator). Alias for <tt>_.isToken</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isOp("%") --> true <br/> _.isOp(">=") --> true <br/> _.isOp("..") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isToken">
+		_.isToken
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isOperator">
+		_.isOperator
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isOperator"></a><strong>_.isOperator</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring is a Lua token (operator). Alias for <tt>_.isToken</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isOperator("%") --> true <br/> _.isOperator(">=") --> true <br/> _.isOperator("..") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isToken">
+		_.isToken
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isOp">
+		_.isOp
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isReserved"></a><strong>_.isReserved</strong>&nbsp;(str)</dt>
+<dd>
+Checks if the given string is a Lua reserved keyword. Alias for <tt>_.isLuaKeyword</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isReserved("if") --> true <br/> _.isReserved("end") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLuaKeyword">
+		_.isLuaKeyword
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isLuaKword">
+		_.isLuaKword
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.isToken"></a><strong>_.isToken</strong>&nbsp;(str)</dt>
+<dd>
+Tests if a given substring is a Lua token (operator)
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.isToken("%") --> true <br/> _.isToken(">=") --> true <br/> _.isToken("..") --> true </pre>
+
+
+
+<h3>Return value:</h3>
+a boolean
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isOperator">
+		_.isOperator
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.isOp">
+		_.isOp
 	</a>
 	
 </ul>
@@ -2736,6 +3353,96 @@ a boolean
 
 
 
+<dt><a name="_.statistics"></a><strong>_.statistics</strong>&nbsp;(str, pat)</dt>
+<dd>
+Returns a table listing counts for each matching to a given pattern
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  pat: a pattern matching string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.statistics('Hello') <br/> => e	1 <br/> => H	1 <br/> => o	1 <br/> => l	2 <br/> _.statistics('my tailor is rich','%w+') <br/> => my	1 <br/> => rich	1 <br/> => is	1 <br/> => tailor	1 </pre>
+
+
+
+<h3>Return value:</h3>
+an array
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.stats">
+		_.stats
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.stats"></a><strong>_.stats</strong>&nbsp;(str, pat)</dt>
+<dd>
+Returns a table listing counts for each matching to a given pattern. Alias for <tt>_.statistics</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  pat: a pattern matching string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.stats('Hello') <br/> => e	1 <br/> => H	1 <br/> => o	1 <br/> => l	2 <br/> _.stats('my tailor is rich','%w+') <br/> => my	1 <br/> => rich	1 <br/> => is	1 <br/> => tailor	1 </pre>
+
+
+
+<h3>Return value:</h3>
+an array
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.statistics">
+		_.statistics
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
 <dt><a name="_.strLeft"></a><strong>_.strLeft</strong>&nbsp;(str, pattern)</dt>
 <dd>
 Returns the substring before the first given pattern matching occurence in a given string
@@ -2874,6 +3581,88 @@ Returns the substring after the last given pattern matching occurence in a given
 a string
 
 
+
+</dd>
+
+
+
+
+<dt><a name="_.subst"></a><strong>_.subst</strong>&nbsp;(str)</dt>
+<dd>
+Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> local x,y = 0,0 <br/> _.subst("x = ${x}",x) --> x = 0 <br/> _.subst("y = $y",y) --> y = 0 </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.substitute">
+		_.substitute
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_.substitute"></a><strong>_.substitute</strong>&nbsp;(str)</dt>
+<dd>
+Substitutes any sequence matching ${var} or $var pattern-like with a given value
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> local x,y = 0,0 <br/> _.substitute("x = ${x}",x) --> x = 0 <br/> _.substitute("y = $y",y) --> y = 0 </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.substitute">
+		_.substitute
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -3035,6 +3824,51 @@ Converts an array of strings into a human-readable string
 a string
 
 
+
+</dd>
+
+
+
+
+<dt><a name="_.trim"></a><strong>_.trim</strong>&nbsp;(str, pat)</dt>
+<dd>
+Clears all special characters or characters matching a given pattern inside a given string. Alias for <tt>_.clean</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  pat: a pattern matching string to be cleaned from the original string. If not given, will clean non-alphanumeric characters.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> _.trim('H_; e\nl\rl^o') --> 'Hello' <br/> _.trim('Lua','%u') --> 'ua' </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.clean">
+		_.clean
+	</a>
+	
+</ul>
 
 </dd>
 

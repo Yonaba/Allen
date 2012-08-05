@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.0 08/02/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 --Copyright (c) 2012 Roland Yonaba
@@ -39,6 +39,35 @@ local t_insert = table.insert
 local tonumber = tonumber
 local getfenv = getfenv
 
+local lua_Kwords = {
+	['and'] = true,   	['break'] = true,  	['do'] = true,
+	['else'] = true,    ['elseif'] = true,	['end'] = true ,
+  	['false'] = true,   ['for'] = true,     ['function'] = true,
+	['if'] = true,		['in'] = true,    	['local'] = true ,
+	['nil'] = true,		['not'] = true ,    ['or'] = true,
+	['repeat'] = true,	['return'] = true,	['then'] = true ,
+	['true'] = true ,   ['until'] = true ,	['while'] = true
+}
+
+local lua_Types = {
+	['nil'] = true, 		['boolean'] = true,
+	['number'] = true, 		['thread'] = true,
+	['userdata'] = true, 	['table'] = true,
+	['string'] = true, 		['function'] = true
+}
+
+local lua_Tokens = {
+	['+'] = true, 	['-']= true, 	['*'] = true, 	['/'] = true,
+	['%'] = true, 	['=='] = true, 	['~='] = true, 	['<='] = true,
+	['>='] = true,	['<'] = true,	['>'] = true,	['^'] = true,
+	['#'] = true,	['='] = true,	['('] = true,	[')'] = true,
+	['{'] = true,	['}'] = true,	['['] = true,	[']'] = true,
+	[';'] = true,	[':'] = true,	['.'] = true,	['..'] = true,
+	['...'] = true
+
+}
+
+
 ------------------------------------------------------------------
 -- Arithmetic metamethods for strings
 ------------------------------------------------------------------
@@ -53,6 +82,7 @@ function mtstr.__mod(a,b)
 	local _chopped = _.chop(a,b)
 	return ((#a)%b==0) and nil or _chopped[#_chopped]
 end
+
 local old_mtIndex = mtstr.__index
 function mtstr.__index(str,i)
 	if type(i)=='number' then
@@ -63,6 +93,15 @@ function mtstr.__index(str,i)
 	end
 end
 
+function mtstr.__call(str,i,j)
+	local i = i or 1
+	local j = j or i
+	if type(i) == 'number' then
+		if type(j) == 'number' then return str:sub(i,j)
+		elseif type(j) == 'string' then return str:sub(1,i-1)..j:sub(1,1)..str:sub(i+1)
+		end
+	end
+end
 
 ------------------------------------------------------------------
 -- Private Helpers
@@ -206,6 +245,15 @@ end
 
 -- Clears all special characters or characters matching a given pattern inside a given string
 function _.clean(str,pat) return (str:gsub(pat or '%A','')) end
+_.trim = _.clean
+
+-- Escape any magic character in agiven string
+function _.escape(str) return (str:gsub('[%^%$%(%)%%%.%[%]%*%+%-%?]','%%%1')) end
+_.esc = _.escape
+
+-- Substitute any ${var} or $var pattern-like with a value
+function _.substitute(str,value) return (str:gsub('%${*([%w]+)}*',value)) end
+_.subst = _.substitute
 
 -- Tests if a given substring is included in a given string
 function _.includes(str,sub) return (str:find(sub)) and true or false end
@@ -231,6 +279,7 @@ function _.isAlphaNumeric(str) return not str:find('%W') end
 function _.isHex(str) return tonumber(str,16) and true or false end
 _.isHexadecimal = _.isHex
 
+-- Returns the character at index i
 function _.index(str,i) return str[i] end
 _.charAt = _.index
 
@@ -423,7 +472,7 @@ function _.rep(str,count,sep) return (str .. (sep or ' ')):rep(count or 2) end
 function _.surround(str,wrap) return wrap .. str .. wrap end
 
 -- Returns a quoted string
-function _.quote(str) return string.format('%q',str) end
+function _.quote(str) return ('%q'):format(str) end
 
 -- Returns an array of Ascii codes of a character or a set of characters
 function _.bytes(str)
@@ -434,6 +483,44 @@ function _.bytes(str)
 	end
 	return _byteSet
 end
+
+-- Returns the Ascii code of character at index i.
+function _.byteAt(str,i) return (str[i]):byte() end
+
+-- Checks if the given string is a reserved keyword
+function _.isLuaKeyword(str) return lua_Kwords[str] and true or false end
+_.isLuaKword = _.isLuaKeyword
+_.isReserved = _.isLuaKeyword
+
+-- Checks if the given string is a token
+function _.isToken(str) return lua_Tokens[str] and true or false end
+_.isOperator = _.isToken
+_.isOp = _.isToken
+
+-- Checks if the given string can be an identifier
+function _.isIdentifier(str)
+    return (str:match('^[%a_]+[%w_]*$') and not _.isReserved(str)) and true or false
+end
+_.isIden = _.isIdentifier
+_.isName = _.isIdentifier
+
+-- Checks if the given input is a valid Lua type
+function _.is(var,expectedType)
+	local _varType = type(var)
+	if expectedType then return (_varType == expectedType) end
+	return lua_Types[_varType] and _varType or nil
+end
+
+-- Returns a table reporting each pattern occurences
+function _.statistics(str,pat)
+	local pat = pat or '.'
+	local _rep = {}
+	for w in (string.gmatch(str,pat,pat)) do
+		_rep[w] = (_rep[w] or 0) + 1
+	end
+	return _rep
+end
+_.stats = _.statistics
 
 -- Imports functions inside string library
 function _.import()
