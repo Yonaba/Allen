@@ -68,12 +68,12 @@ Passing a character as a second argument will replace the character at index <tt
     local s = 'Helo'
 	print(s(3,'r')) --> 'Hero'
 
-See [Allen_StringOp_Test.lua][] for more details.
+See [Allen_StringOp_Snippets.lua][] for more details.
 	
 ##API Overview##
 __Allen__ offers a lot of functions, iterators to operate on strings.<br/>
 A fully complete documentation, with usage examples can be found here : [Documentation][]<br/>
-A test suite for all functions provided can be found here : [Allen_Lib_Test.lua][] and [Allen_StringOp_Test.lua][]
+Some usage examples can be found here : [Allen_Lib_Snippets.lua][] and [Allen_StringOp_Snippets.lua][]
 
 ##Credits and Thanks##
 [Esa-Matti Suuronen][] and [Edward Tsech][], for the amazing [Underscore.string][]
@@ -105,8 +105,8 @@ Copyright (c) 2012 Roland Yonaba
 [Moses]: https://github.com/Yonaba/Moses
 [Allen.lua]: https://github.com/Yonaba/Allen/blob/master/Lib/Allen.lua
 [Documentation]: https://github.com/Yonaba/Allen/blob/master/Documentation
-[Allen_Lib_Test.lua]: https://github.com/Yonaba/Allen/blob/master/Allen_Lib_Test.lua
-[Allen_StringOp_Test.lua]: https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Test.lua
+[Allen_Lib_Snippets.lua]: https://github.com/Yonaba/Allen/blob/master/Allen_Lib_Snippets.lua
+[Allen_StringOp_Snippets.lua]: https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Snippets.lua
 [Esa-Matti Suuronen]: https://github.com/epeli
 [Edward Tsech]: https://github.com/edtsech
 [MIT-LICENSE]: http://www.opensource.org/licenses/mit-license.php
