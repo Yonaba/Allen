@@ -80,7 +80,9 @@ Compatible operators are : <strong>+,*,/,%,^,-.</strong></p>
 <li>Power operator (^) : also repeats a string</li>
 <li>Division operator (/) : used for chopping strings (dividing it in subsets strings)</li>
 <li>Modulo operator (%) : returns the remainder subset string after a chopping process.</li>
-</ul><p>Strings can also be indexed, like regular Lua tables.</p>
+</ul><h2>Strings Indexing</h2>
+
+<p>Using <strong>Allen</strong>, strings can be indexed, like regular Lua tables.</p>
 
 <pre><code>for i = 1,5 do 
     print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
@@ -92,13 +94,39 @@ end
 =&gt; Accessing Hello[5] : o
 </code></pre>
 
-<p>See <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Test.lua">Allen_StringOp_Test.lua</a> for more details.</p>
+<h2>Strings as functions</h2>
+
+<p>Once <strong>Allen</strong> is loaded inside a project, strings can be called as functions.</p>
+
+<pre><code>local s = 'Hello'
+print(s()) --&gt; 'Hello'
+</code></pre>
+
+<p>Passing a positive number <tt>i</tt> as the first argument will return the character at the corresponding index</p>
+
+<pre><code>local s = 'Hello'
+print(s(2)) --&gt; 'e'
+</code></pre>
+
+<p>Passing a number <tt>j</tt> as a second argument will return the substring between <tt>i</tt> and <tt>j</tt></p>
+
+<pre><code>local s = 'Hello'
+print(s(2,4)) --&gt; 'ell'
+</code></pre>
+
+<p>Passing a character as a second argument will replace the character at index <tt>i</tt></p>
+
+<pre><code>local s = 'Helo'
+print(s(3,'r')) --&gt; 'Hero'
+</code></pre>
+
+<p>See <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Snippets.lua">Allen_StringOp_Snippets.lua</a> for more details.</p>
 
 <h2>API Overview</h2>
 
 <p><strong>Allen</strong> offers a lot of functions, iterators to operate on strings.<br>
 A fully complete documentation, with usage examples can be found here : <a href="https://github.com/Yonaba/Allen/blob/master/Documentation">Documentation</a><br>
-A test suite for all functions provided can be found here : <a href="https://github.com/Yonaba/Allen/blob/master/Allen_Lib_Test.lua">Allen_Lib_Test.lua</a> and <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Test.lua">Allen_StringOp_Test.lua</a></p>
+Some usage examples can be found here : <a href="https://github.com/Yonaba/Allen/blob/master/Allen_Lib_Snippets.lua">Allen_Lib_Snippets.lua</a> and <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Snippets.lua">Allen_StringOp_Snippets.lua</a></p>
 
 <h2>Credits and Thanks</h2>
 
