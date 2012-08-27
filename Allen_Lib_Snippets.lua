@@ -42,25 +42,25 @@ local topics = {}
 
 -- Adds a new snippet
 local function addSnippet(topic,snippet)
-	t_insert(topics,topic)
-	t_insert(snippets,snippet)
+  t_insert(topics,topic)
+  t_insert(snippets,snippet)
 end
 
 -- Resets snippets list
 local function reset()
-	snippets = {}
-	topics = {}
+  snippets = {}
+  topics = {}
 end
 
 -- Run all tests
 local function run()
-	for i,snippet in ipairs(snippets) do
-		print(i..'. Function name : '..topics[i])
-		print('\nExample : \n\n'..snippet)
-		print('\n--- Output : --- \n')
-		loadstring(snippet)()
-		print('\n')
-	end
+  for i,snippet in ipairs(snippets) do
+    print(i..'. Function name : '..topics[i])
+    print('\nExample : \n\n'..snippet)
+    print('\n--- Output : --- \n')
+    loadstring(snippet)()
+    print('\n')
+  end
 end
 
 
@@ -419,7 +419,7 @@ table.foreach(_.bytes('hello'),print)
 addSnippet('_.byteAt(str,i)',
 [[local str = 'Hello'
 for i = 1,#str do
-	print(_.byteAt(str,i))
+  print(_.byteAt(str,i))
 end
 ]])
 
