@@ -9,20 +9,26 @@ It will return a table containing a set of functions.
 
 ##Usage example##
 
-    local lyrics = 'hey I just met you\nand this is crazy\nbut here is my number\nso call me maybe'
-    lyrics = _.lines(lyrics)
-    for i,line in ipairs(lyrics) do line = _.capitalizeFirst(line) end
-    => { 'Hey I just met you',
-         'And this is crazy',
-         'But here is my number',
-         'So call me maybe'}
-	
+```lua
+local lyrics = 'hey I just met you\nand this is crazy\nbut here is my number\nso call me maybe'
+lyrics = _.lines(lyrics)
+for i,line in ipairs(lyrics) do 
+  line = _.capitalizeFirst(line) 
+end
+-- => { 'Hey I just met you',
+--      'And this is crazy',
+--      'But here is my number',
+--      'So call me maybe'}
+```
+
 ##Allen and the built-in string library##
 __Allen__ provides a very handy function named *_.import*, which links Lua's native string library with __Allen__'s functions.
 
-    _.import()
-    print(string.capitalize('hello'))
-    print(('Hello'):splice(2,2,'r'))
+```lua
+_.import()
+print(string.capitalize('hello'))
+print(('Hello'):splice(2,2,'r'))
+```
 
 ##About Lua Operators##
 Once __Allen__ is called inside your projet,it enables the use of arithmetic operators on strings by default.<br/>
@@ -38,35 +44,45 @@ Compatible operators are : __+,*,/,%,^,-.__
 ##Strings Indexing##
 Using __Allen__, strings can be indexed, like regular Lua tables.
 
-    for i = 1,5 do 
-	    print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
-	end
-    => Accessing Hello[1] :	H
-    => Accessing Hello[2] :	e
-    => Accessing Hello[3] :	l
-    => Accessing Hello[4] :	l
-    => Accessing Hello[5] :	o
+```lua
+for i = 1,5 do 
+  print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
+end
+-- => Accessing Hello[1] :	H
+-- => Accessing Hello[2] :	e
+-- => Accessing Hello[3] :	l
+-- => Accessing Hello[4] :	l
+-- => Accessing Hello[5] :	o
+```
 
 ##Strings as functions##
 Once __Allen__ is loaded inside a project, strings can be called as functions.
 
-    local s = 'Hello'
-	print(s()) --> 'Hello'
+```lua 
+local s = 'Hello'
+print(s()) --> 'Hello'
+```
 	
 Passing a positive number <tt>i</tt> as the first argument will return the character at the corresponding index
 
-    local s = 'Hello'
-	print(s(2)) --> 'e'
+```lua
+local s = 'Hello'
+print(s(2)) --> 'e'
+```
 	
 Passing a number <tt>j</tt> as a second argument will return the substring between <tt>i</tt> and <tt>j</tt>
 
-    local s = 'Hello'
-	print(s(2,4)) --> 'ell'
+```lua
+local s = 'Hello'
+print(s(2,4)) --> 'ell'
+```
 	
 Passing a character as a second argument will replace the character at index <tt>i</tt>
 
-    local s = 'Helo'
-	print(s(3,'r')) --> 'Hero'
+```lua
+local s = 'Helo'
+print(s(3,'r')) --> 'Hero'
+```
 
 See [Allen_StringOp_Snippets.lua][] for more details.
 	
@@ -82,24 +98,24 @@ Some usage examples can be found here : [Allen_Lib_Snippets.lua][] and [Allen_St
 This work is under [MIT-LICENSE][]<br/>
 Copyright (c) 2012 Roland Yonaba
 
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the
-    "Software"), to deal in the Software without restriction, including
-    without limitation the rights to use, copy, modify, merge, publish,
-    distribute, sublicense, and/or sell copies of the Software, and to
-    permit persons to whom the Software is furnished to do so, subject to
-    the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
-    The above copyright notice and this permission notice shall be included
-    in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [Underscore.string]: https://github.com/epeli/underscore.string
 [Moses]: https://github.com/Yonaba/Moses
