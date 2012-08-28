@@ -50,23 +50,25 @@ It will return a table containing a set of functions.</p>
 
 <h2>Usage example</h2>
 
-<pre><code>local lyrics = 'hey I just met you\nand this is crazy\nbut here is my number\nso call me maybe'
-lyrics = _.lines(lyrics)
-for i,line in ipairs(lyrics) do line = _.capitalizeFirst(line) end
-=&gt; { 'Hey I just met you',
-     'And this is crazy',
-     'But here is my number',
-     'So call me maybe'}
-</code></pre>
+<div class="highlight"><pre><span class="kd">local</span> <span class="n">lyrics</span> <span class="o">=</span> <span class="s1">'</span><span class="s">hey I just met you</span><span class="se">\n</span><span class="s">and this is crazy</span><span class="se">\n</span><span class="s">but here is my number</span><span class="se">\n</span><span class="s">so call me maybe'</span>
+<span class="n">lyrics</span> <span class="o">=</span> <span class="n">_</span><span class="p">.</span><span class="n">lines</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span> <span class="k">do</span> 
+  <span class="n">line</span> <span class="o">=</span> <span class="n">_</span><span class="p">.</span><span class="n">capitalizeFirst</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+<span class="k">end</span>
+<span class="c1">-- =&gt; { 'Hey I just met you',</span>
+<span class="c1">--      'And this is crazy',</span>
+<span class="c1">--      'But here is my number',</span>
+<span class="c1">--      'So call me maybe'}</span>
+</pre></div>
 
 <h2>Allen and the built-in string library</h2>
 
 <p><strong>Allen</strong> provides a very handy function named <em>_.import</em>, which links Lua's native string library with <strong>Allen</strong>'s functions.</p>
 
-<pre><code>_.import()
-print(string.capitalize('hello'))
-print(('Hello'):splice(2,2,'r'))
-</code></pre>
+<div class="highlight"><pre><span class="n">_</span><span class="p">.</span><span class="n">import</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">capitalize</span><span class="p">(</span><span class="s1">'</span><span class="s">hello'</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">((</span><span class="s1">'</span><span class="s">Hello'</span><span class="p">):</span><span class="n">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">'</span><span class="s">r'</span><span class="p">))</span>
+</pre></div>
 
 <h2>About Lua Operators</h2>
 
@@ -84,41 +86,41 @@ Compatible operators are : <strong>+,*,/,%,^,-.</strong></p>
 
 <p>Using <strong>Allen</strong>, strings can be indexed, like regular Lua tables.</p>
 
-<pre><code>for i = 1,5 do 
-    print(('Accessing %s[%d] :'):format('Hello',i),('Hello')[i]) 
-end
-=&gt; Accessing Hello[1] : H
-=&gt; Accessing Hello[2] : e
-=&gt; Accessing Hello[3] : l
-=&gt; Accessing Hello[4] : l
-=&gt; Accessing Hello[5] : o
-</code></pre>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">5</span> <span class="k">do</span> 
+  <span class="nb">print</span><span class="p">((</span><span class="s1">'</span><span class="s">Accessing %s[%d] :'</span><span class="p">):</span><span class="n">format</span><span class="p">(</span><span class="s1">'</span><span class="s">Hello'</span><span class="p">,</span><span class="n">i</span><span class="p">),(</span><span class="s1">'</span><span class="s">Hello'</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span> 
+<span class="k">end</span>
+<span class="c1">-- =&gt; Accessing Hello[1] :  H</span>
+<span class="c1">-- =&gt; Accessing Hello[2] :  e</span>
+<span class="c1">-- =&gt; Accessing Hello[3] :  l</span>
+<span class="c1">-- =&gt; Accessing Hello[4] :  l</span>
+<span class="c1">-- =&gt; Accessing Hello[5] :  o</span>
+</pre></div>
 
 <h2>Strings as functions</h2>
 
 <p>Once <strong>Allen</strong> is loaded inside a project, strings can be called as functions.</p>
 
-<pre><code>local s = 'Hello'
-print(s()) --&gt; 'Hello'
-</code></pre>
+<div class="highlight"><pre><span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">'</span><span class="s">Hello'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">())</span> <span class="c1">--&gt; 'Hello'</span>
+</pre></div>
 
 <p>Passing a positive number <tt>i</tt> as the first argument will return the character at the corresponding index</p>
 
-<pre><code>local s = 'Hello'
-print(s(2)) --&gt; 'e'
-</code></pre>
+<div class="highlight"><pre><span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">'</span><span class="s">Hello'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1">--&gt; 'e'</span>
+</pre></div>
 
 <p>Passing a number <tt>j</tt> as a second argument will return the substring between <tt>i</tt> and <tt>j</tt></p>
 
-<pre><code>local s = 'Hello'
-print(s(2,4)) --&gt; 'ell'
-</code></pre>
+<div class="highlight"><pre><span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">'</span><span class="s">Hello'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1">--&gt; 'ell'</span>
+</pre></div>
 
 <p>Passing a character as a second argument will replace the character at index <tt>i</tt></p>
 
-<pre><code>local s = 'Helo'
-print(s(3,'r')) --&gt; 'Hero'
-</code></pre>
+<div class="highlight"><pre><span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">'</span><span class="s">Helo'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">'</span><span class="s">r'</span><span class="p">))</span> <span class="c1">--&gt; 'Hero'</span>
+</pre></div>
 
 <p>See <a href="https://github.com/Yonaba/Allen/blob/master/Allen_StringOp_Snippets.lua">Allen_StringOp_Snippets.lua</a> for more details.</p>
 
@@ -137,25 +139,24 @@ Some usage examples can be found here : <a href="https://github.com/Yonaba/Allen
 <p>This work is under <a href="http://www.opensource.org/licenses/mit-license.php">MIT-LICENSE</a><br>
 Copyright (c) 2012 Roland Yonaba</p>
 
-<pre><code>Permission is hereby granted, free of charge, to any person obtaining a
+<p>Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+the following conditions:</p>
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</code></pre>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/Yonaba">Yonaba</a></p>
