@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------
 -- Set of utility functions for strings
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1.1 09/24/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 --Copyright (c) 2012 Roland Yonaba
@@ -434,17 +434,20 @@ function _.esc(str) end
 
 --- Substitutes any sequence matching ${var} or $var pattern-like with a given value
 -- @param str a string
+-- @param var a variable
 -- @return a string
 -- @usage <pre class='example'>
 -- local x,y = 0,0 <br/>
 -- _.substitute("x = ${x}",x) --> x = 0 <br/>
 -- _.substitute("y = $y",y) --> y = 0
 -- </pre>
--- @see _.substitute
-function _.substitute(str) end
+-- @see _.subst
+-- @see _.interpolate
+function _.substitute(str, var) end
 
 --- Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
 -- @param str a string
+-- @param var a variable
 -- @return a string
 -- @usage <pre class='example'>
 -- local x,y = 0,0 <br/>
@@ -452,7 +455,21 @@ function _.substitute(str) end
 -- _.subst("y = $y",y) --> y = 0
 -- </pre>
 -- @see _.substitute
-function _.subst(str) end
+-- @see _.interpolate
+function _.subst(str, var) end
+
+--- Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
+-- @param str a string
+-- @param var a variable
+-- @return a string
+-- @usage <pre class='example'>
+-- local x,y = 0,0 <br/>
+-- _.interpolate("x = ${x}",x) --> x = 0 <br/>
+-- _.interpolate("y = $y",y) --> y = 0
+-- </pre>
+-- @see _.substitute
+-- @see _.subst
+function _.interpolate(str, var) end
 
 --- Checks if the given string is a Lua reserved keyword
 -- @param str a string

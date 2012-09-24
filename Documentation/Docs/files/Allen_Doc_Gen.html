@@ -50,9 +50,9 @@
 </div> <!-- id="navigation" -->
 
 <div id="content">
-
+<p><small><b>Release:</b> $Id: Allen.lua,v1.1.1 09/24/2012 Roland_Yonaba$ </small></p>
 <h1>File <code>Allen.lua</code></h1>
-<p><small><b>Release:</b> $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$ </small></p>
+
 
 
 
@@ -190,6 +190,11 @@
 	<tr>
 	<td class="name" nowrap><a href="#_.insert">_.insert</a>&nbsp;(str, index, substring)</td>
 	<td class="summary">Inserts substring at index position in a given string </td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_.interpolate">_.interpolate</a>&nbsp;(str, var)</td>
+	<td class="summary">Substitutes any sequence matching ${var} or $var pattern-like with a given value.</td>
 	</tr>
 
 	<tr>
@@ -438,12 +443,12 @@
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#_.subst">_.subst</a>&nbsp;(str)</td>
+	<td class="name" nowrap><a href="#_.subst">_.subst</a>&nbsp;(str, var)</td>
 	<td class="summary">Substitutes any sequence matching ${var} or $var pattern-like with a given value.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#_.substitute">_.substitute</a>&nbsp;(str)</td>
+	<td class="name" nowrap><a href="#_.substitute">_.substitute</a>&nbsp;(str, var)</td>
 	<td class="summary">Substitutes any sequence matching ${var} or $var pattern-like with a given value </td>
 	</tr>
 
@@ -1533,6 +1538,55 @@ Inserts substring at index position in a given string
 a string
 
 
+
+</dd>
+
+
+
+
+<dt><a name="_.interpolate"></a><strong>_.interpolate</strong>&nbsp;(str, var)</dt>
+<dd>
+Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  str: a string
+	</li>
+	
+	<li>
+	  var: a variable
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+<pre class='example'> local x,y = 0,0 <br/> _.interpolate("x = ${x}",x) --> x = 0 <br/> _.interpolate("y = $y",y) --> y = 0 </pre>
+
+
+
+<h3>Return value:</h3>
+a string
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.substitute">
+		_.substitute
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.subst">
+		_.subst
+	</a>
+	
+</ul>
 
 </dd>
 
@@ -3587,7 +3641,7 @@ a string
 
 
 
-<dt><a name="_.subst"></a><strong>_.subst</strong>&nbsp;(str)</dt>
+<dt><a name="_.subst"></a><strong>_.subst</strong>&nbsp;(str, var)</dt>
 <dd>
 Substitutes any sequence matching ${var} or $var pattern-like with a given value. Alias for <tt>_.subst</tt>
 
@@ -3597,6 +3651,10 @@ Substitutes any sequence matching ${var} or $var pattern-like with a given value
 	
 	<li>
 	  str: a string
+	</li>
+	
+	<li>
+	  var: a variable
 	</li>
 	
 </ul>
@@ -3621,6 +3679,10 @@ a string
 		_.substitute
 	</a>
 	
+	<li><a href="../files/Allen_Doc_Gen.html#_.interpolate">
+		_.interpolate
+	</a>
+	
 </ul>
 
 </dd>
@@ -3628,7 +3690,7 @@ a string
 
 
 
-<dt><a name="_.substitute"></a><strong>_.substitute</strong>&nbsp;(str)</dt>
+<dt><a name="_.substitute"></a><strong>_.substitute</strong>&nbsp;(str, var)</dt>
 <dd>
 Substitutes any sequence matching ${var} or $var pattern-like with a given value
 
@@ -3638,6 +3700,10 @@ Substitutes any sequence matching ${var} or $var pattern-like with a given value
 	
 	<li>
 	  str: a string
+	</li>
+	
+	<li>
+	  var: a variable
 	</li>
 	
 </ul>
@@ -3658,8 +3724,12 @@ a string
 <h3>See also:</h3>
 <ul>
 	
-	<li><a href="../files/Allen_Doc_Gen.html#_.substitute">
-		_.substitute
+	<li><a href="../files/Allen_Doc_Gen.html#_.subst">
+		_.subst
+	</a>
+	
+	<li><a href="../files/Allen_Doc_Gen.html#_.interpolate">
+		_.interpolate
 	</a>
 	
 </ul>

@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1.1 09/24/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 -- Copyright (c) 2012 Roland Yonaba
@@ -244,6 +244,12 @@ addSnippet('_.subst(str,value)',
 [[local x,y = 0,0
 print(_.subst("x = ${x}",x))
 print(_.subst("y = $y",y))
+]])
+
+addSnippet('_.interpolate(str,value)',
+[[local x,y = 0,0
+print(_.interpolate("x = ${x}",x))
+print(_.interpolate("y = $y",y))
 ]])
 
 addSnippet('_.includes(str,sub)',

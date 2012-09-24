@@ -1,5 +1,9 @@
 #Version history#
 
+##1.1.1 (09/24/12)
+* Added <tt>_.interpolate</tt> (alias to <tt>_.substitute</tt>)
+* Typos fix in docs 
+
 ##1.1 (08/05/12)
 * Added <tt>_.escape</tt> and <tt>_.esc</tt> alias
 * Added <tt>_.substitute</tt> and <tt>_.subst</tt> alias

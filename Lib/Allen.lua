@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.1 08/05/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v1.1.1 09/24/2012 Roland_Yonaba$
 --------------------------------------------------------------------------
 
 --Copyright (c) 2012 Roland Yonaba
@@ -262,6 +262,7 @@ _.esc = _.escape
 -- Substitute any ${var} or $var pattern-like with a value
 function _.substitute(str,value) return (str:gsub('%${*([%w]+)}*',value)) end
 _.subst = _.substitute
+_.interpolate = _.substitute
 
 -- Tests if a given substring is included in a given string
 function _.includes(str,sub) return (str:find(sub)) and true or false end
