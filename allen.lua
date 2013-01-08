@@ -282,7 +282,10 @@ function _.isAlpha(str)  return not str:find('%A') end
 function _.isNumeric(str) return tonumber(str) and true or false end
 
 -- Returns the character at index i
-function _.index(str,i) return str[i] end
+function _.index(str,i)
+  i = i < 0 and #str+i+1 or i
+  return str[i] 
+end
 _.charAt = _.index
 
 -- Checks if a given string matches an email address syntax
