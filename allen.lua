@@ -250,6 +250,7 @@ function _.chop(str,step)
   end
   return _chopped
 end
+_.split = _.chop
 
 -- Clears all special characters or characters matching a given pattern inside a given string
 function _.clean(str,pat) return (str:gsub(pat or '%A','')) end
