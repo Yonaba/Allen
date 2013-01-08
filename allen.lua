@@ -325,7 +325,6 @@ function _.count(str,sub) return select(2,str:gsub(sub,sub)) end
 -- Inserts substring at index position in a given string
 function _.insert(str,index,substring)
   index = index > #str and #str+1 or (index < 1 and 1 or index)
-  print('index', index)
   return str:sub(1,index-1) + substring + str:sub(index) 
 end
 
@@ -339,7 +338,8 @@ function _.join(sep,...) return t_concat({...},sep) end
 function _.lines(str)
   local _lines = {}
   for l in str:gmatch('[^\n\r]+') do t_insert(_lines,l) end
-  return #_lines>0 and _lines or nil
+  if #_lines==0 then return nil end
+  return #_lines == 1 and _lines[1] or _lines
 end
 
 -- Replaces howMany characters after index position in a given string with a given substring
