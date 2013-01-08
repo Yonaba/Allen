@@ -159,8 +159,8 @@ _.capFirst = _.capitalizeFirst
 
 -- Capitalizes each word in a string
 function _.capitalizesEach(str)
-  return str:gsub("(%w[%w]*)",
-      function (match) return _.capFirst(match) end)
+  return (str:gsub("(%w[%w]*)",
+      function (match) return _.capFirst(match) end))
 end
 _.capEach = _.capitalizesEach
 _.caps = _.capitalizesEach
@@ -169,7 +169,7 @@ _.caps = _.capitalizesEach
 function _.capitalize(str,i,j)
   local i,j = i,j
   if not i then i,j = 1,#str end
-  return (str:gsub(str:sub(i,j),str:sub(i,j)):upper())
+  return (str:gsub(str:sub(i,j),str:sub(i,j):upper()))
 end
 _.cap = _.capitalize
 
