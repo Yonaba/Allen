@@ -281,10 +281,6 @@ function _.isAlpha(str)  return not str:find('%A') end
 -- Checks if a given string features only digits
 function _.isNumeric(str) return tonumber(str) and true or false end
 
--- Checks if a given string is hex
-function _.isHex(str) return tonumber(str,16) and true or false end
-_.isHexadecimal = _.isHex
-
 -- Returns the character at index i
 function _.index(str,i) return str[i] end
 _.charAt = _.index
