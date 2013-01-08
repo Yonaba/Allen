@@ -323,8 +323,10 @@ end
 function _.count(str,sub) return select(2,str:gsub(sub,sub)) end
 
 -- Inserts substring at index position in a given string
-function _.insert(str,index,substring) 
-  return str:sub(1,index) + substring + str:sub(index+1) 
+function _.insert(str,index,substring)
+  index = index > #str and #str+1 or (index < 1 and 1 or index)
+  print('index', index)
+  return str:sub(1,index-1) + substring + str:sub(index) 
 end
 
 -- Tests if a given string contain any alphanumeric character
