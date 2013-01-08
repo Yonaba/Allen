@@ -153,7 +153,7 @@ end
 
 -- Capitalizes the first character of a given string
 function _.capitalizeFirst(str) 
-  return (str:lower():gsub('^%l', string.upper)) 
+  return (str:gsub('^%l', string.upper)) 
 end
 _.capFirst = _.capitalizeFirst
 
