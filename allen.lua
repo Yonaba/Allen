@@ -210,7 +210,7 @@ function _.swapCase(str,i,j)
     for i,char in ipairs(_sub) do 
       _sub[i] = _.isUpper(char) and char:lower() or char:upper() 
     end
-  return (str:gsub(oldPat, t_concat(_sub)))
+    return (str:gsub(oldPat, t_concat(_sub)))
   end
   return str
 end
@@ -525,7 +525,6 @@ function _.quote(str) return ('%q'):format(str) end
 
 -- Returns an array of Ascii codes of a character or a set of characters
 function _.bytes(str)
-  local _set = _.chars(str)
   local _byteSet = {}
   for char in str:gmatch('.') do
     if not _byteSet[char] then _byteSet[char] = char:byte() end
