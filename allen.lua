@@ -253,7 +253,7 @@ end
 _.split = _.chop
 
 -- Clears all special characters or characters matching a given pattern inside a given string
-function _.clean(str,pat) return (str:gsub(pat or '%A','')) end
+function _.clean(str,pat) return (str:gsub(pat or '%W','')) end
 _.trim = _.clean
 
 -- Escape any magic character in agiven string
