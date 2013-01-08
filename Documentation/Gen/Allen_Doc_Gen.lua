@@ -252,26 +252,6 @@ function _.isNumeric(str) end
 -- @see _.isNumeric
 function _.isNum(str) end
 
---- Checks if a given string contains only alphabetic and digits
--- @param str a string
--- @return a boolean
--- @usage <pre class='example'> 
--- _.isAlphaNumeric('-33.2a') --> false <br/>
--- _.isAlphaNumeric('33.2') --> true
--- </pre>
--- @see _.isANum
-function _.isAlphaNumeric(str) end
-
---- Checks if a given string contains only alphabetic and digits. Alias for <tt>_.isAlphaNumeric</tt>
--- @param str a string
--- @return a boolean
--- @usage <pre class='example'> 
--- _.isANum('-33.2a') --> false <br/>
--- _.isANum('33.2') --> true
--- </pre>
--- @see _.isAlphaNumeric
-function _.isANum(str) end
-
 --- Checks if a given string can be converted to hex
 -- @param str a string
 -- @return a boolean
