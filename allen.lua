@@ -344,7 +344,7 @@ end
 
 -- Replaces howMany characters after index position in a given string with a given substring
 function _.splice(str,index,howMany,substring)
-  local _str = _.insert(str,index,substring)
+  local _str = _.insert(str,index+1,substring)
   local index = index + (#substring)
   return _str:sub(1,index) + _str:sub(index + howMany + 1)
 end
@@ -360,22 +360,21 @@ function _.endsWith(str,ends)
 end
 
 -- Returns the successor of a given character or set of characters
-function _.succ(str,step) 
+function _.succ(str,n) 
   return (str:gsub('.',
-        function(match) return preOrSucc(match,step or 1) end)) 
+        function(match) return preOrSucc(match,n or 1) end)) 
 end
 _.next = _.succ
 
 -- Returns the predecessor of a given character or set of characters
-function _.pre(str,step) 
+function _.pre(str,n) 
   return (str:gsub('.',
-        function(match) return preOrSucc(match,step and -step or -1) end)) 
+        function(match) return preOrSucc(match,n and -n or -1) end)) 
 end
 
 -- Title-izes a given string (each word beginning with a capitalized letter)
 function _.titleize(str) 
-  return (str:gsub('%s*(%a+%s*)',
-        function(match) return match:sub(1,1):upper()..match:sub(2) end)) 
+  return (str:gsub('(%w[%w]*)',_.capitalizeFirst))
 end
 
 -- Converts a given string (underscored or dasherized) into camelized style
@@ -388,10 +387,9 @@ end
 -- Converts a given string (camelized or dasherized) into underscored style
 function _.underscored(str)
   if #str < 2 then return str end
-  local str = str:sub(1,1):lower()..str:sub(2)
-  str = str:find('[%u]') 
-      and str:gsub('(%u)',function(match) return '_' + match:lower() end) 
-       or str
+  local str = str:sub(1,1):lower()..str:sub(2)  
+  str = str:gsub('(%u)', function(match) return '_' + match:lower() end)
+           :gsub('[%s]+([^%s])', function(match) return '_' + match:lower() end)  
   return (str:gsub('-','_'):gsub('^_',''):gsub('_[_]+','_'))
 end
 
