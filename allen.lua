@@ -377,14 +377,14 @@ function _.titleize(str)
   return (str:gsub('(%w[%w]*)',_.capitalizeFirst))
 end
 
--- Converts a given string (underscored or dasherized) into camelized style
+-- Converts a given string (underscored or dasherize) into camelized style
 function _.camelize(str) 
   return (str:find('[_-]') 
      and _.clean(_.titleize(str:gsub('[_-]',' ')),'%s') 
       or _.clean(str,'%s')) 
 end
 
--- Converts a given string (camelized or dasherized) into underscored style
+-- Converts a given string (camelized or dasherize) into underscored style
 function _.underscored(str)
   if #str < 2 then return str end
   local str = str:sub(1,1):lower()..str:sub(2)  
@@ -393,17 +393,19 @@ function _.underscored(str)
   return (str:gsub('-','_'):gsub('^_',''):gsub('_[_]+','_'))
 end
 
--- Converts a given string (underscored or camelized) into dasherized style
+-- Converts a given string (underscored or camelized) into dasherize style
 function _.dasherize(str)
-  local str = str:find('[%u]') 
-        and str:gsub('(%u)',function(match) return '-' + match:lower() end) 
-         or str
-  return (str:gsub('_','-'):gsub('^-',''):gsub('(-+)','-'))
+  return (str:gsub('(%s*_%s*)','-')
+             :gsub('(^%s*-%s*)','')
+             :gsub('(%s*-+%s*)','-')
+             :gsub('(%s*%u%s*)',function(match) return '-' + match:gsub('%s',''):lower() end)
+             :gsub('(%s+)','-')
+             :gsub('%-+$',''))
 end
 
--- Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form
+-- Converts a given string (underscored, humanized, dasherize or camelized) into a human-readable form
 function _.humanized(str)
-  local str = str:gsub('[_-]',' ')
+  str = str:gsub('[_-]',' ')
                  :gsub('%s%s+','')
                  :gsub('%s$','')
                  :gsub('^%s','')
