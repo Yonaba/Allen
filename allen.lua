@@ -394,7 +394,7 @@ function _.underscored(str)
 end
 
 -- Converts a given string (underscored or camelized) into dasherized style
-function _.dasherized(str)
+function _.dasherize(str)
   local str = str:find('[%u]') 
         and str:gsub('(%u)',function(match) return '-' + match:lower() end) 
          or str
