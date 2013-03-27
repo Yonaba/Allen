@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------
 -- @author Roland Yonaba
--- @release $Id: Allen.lua,v1.1.1 09/24/2012 Roland_Yonaba$
+-- @release $Id: Allen.lua,v? ??/??/???? Roland_Yonaba$
 --------------------------------------------------------------------------
 
---Copyright (c) 2012 Roland Yonaba
+--Copyright (c) 2012-2013 Roland Yonaba
 --[[
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
@@ -96,9 +96,9 @@ function mtstr.__call(str,i,j)
   local i = i or 1
   local j = j or i
   if type(i) == 'number' then
-    if type(j) == 'number' then 
+    if type(j) == 'number' then
       return str:sub(i,j)
-    elseif type(j) == 'string' then 
+    elseif type(j) == 'string' then
       return str:sub(1,i-1)..j:sub(1,1)..str:sub(i+1)
     end
   end
@@ -126,8 +126,8 @@ local function minOf(...)
 end
 
 -- Retuns the precedent/next character in Ascii table
-local function preOrSucc(char,dir) 
-  return string.char(char:byte()+dir) 
+local function preOrSucc(char,dir)
+  return string.char(char:byte()+dir)
 end
 
 -- Returns a list of functions keys packed into an object
@@ -152,8 +152,8 @@ end
 ------------------------------------------------------------------
 
 -- Capitalizes the first character of a given string
-function _.capitalizeFirst(str) 
-  return (str:gsub('^%l', string.upper)) 
+function _.capitalizeFirst(str)
+  return (str:gsub('^%l', string.upper))
 end
 _.capFirst = _.capitalizeFirst
 
@@ -207,8 +207,8 @@ function _.swapCase(str,i,j)
   local oldPat = str:sub(i,j)
   local _sub = _.chars(oldPat)
   if _sub then
-    for i,char in ipairs(_sub) do 
-      _sub[i] = _.isUpper(char) and char:lower() or char:upper() 
+    for i,char in ipairs(_sub) do
+      _sub[i] = _.isUpper(char) and char:lower() or char:upper()
     end
     return (str:gsub(oldPat, t_concat(_sub)))
   end
@@ -285,7 +285,7 @@ function _.isNumeric(str) return tonumber(str) and true or false end
 -- Returns the character at index i
 function _.index(str,i)
   i = i < 0 and #str+i+1 or i
-  return str[i] 
+  return str[i]
 end
 _.charAt = _.index
 
@@ -297,23 +297,23 @@ function _.isEmail(str)
   local domainPart = _.strRight(str,'@')
   if not localPart or not domainPart then return false end
 
-  if not localPart:match("[%w!#%$%%&'%*%+%-/=%?^_`{|}~]+") 
-      or (localPart:len() > 64) then 
-        return false 
+  if not localPart:match("[%w!#%$%%&'%*%+%-/=%?^_`{|}~]+")
+      or (localPart:len() > 64) then
+        return false
   end
-  if _.startsWith(localPart,'%.+') 
-      or _.endsWith(localPart,'%.+') or localPart:find('%.%.+') then 
-        return false 
+  if _.startsWith(localPart,'%.+')
+      or _.endsWith(localPart,'%.+') or localPart:find('%.%.+') then
+        return false
   end
 
-  if not domainPart:match('[%w%-_]+%.%a%a+$') 
-      or domainPart:len() > 253 then 
-        return false 
+  if not domainPart:match('[%w%-_]+%.%a%a+$')
+      or domainPart:len() > 253 then
+        return false
   end
   local fDomain = _.strLeftBack(domainPart,'%.')
-  if _.startsWith(fDomain,'[_%-%.]+') 
-      or _.endsWith(fDomain,'[_%-%.]+') or fDomain:find('%.%.+') then 
-        return false 
+  if _.startsWith(fDomain,'[_%-%.]+')
+      or _.endsWith(fDomain,'[_%-%.]+') or fDomain:find('%.%.+') then
+        return false
   end
 
   return true
@@ -325,7 +325,7 @@ function _.count(str,sub) return select(2,str:gsub(sub,sub)) end
 -- Inserts substring at index position in a given string
 function _.insert(str,index,substring)
   index = index > #str and #str+1 or (index < 1 and 1 or index)
-  return str:sub(1,index-1) + substring + str:sub(index) 
+  return str:sub(1,index-1) + substring + str:sub(index)
 end
 
 -- Tests if a given string contain any alphanumeric character
@@ -350,50 +350,50 @@ function _.splice(str,index,howMany,substring)
 end
 
 -- Tests if a given string starts with a given pattern
-function _.startsWith(str,starts) 
-  return (str:find('^'..starts)) and true or false 
+function _.startsWith(str,starts)
+  return (str:find('^'..starts)) and true or false
 end
 
 -- Tests if a given string ends with a given pattern
-function _.endsWith(str,ends) 
-  return (str:find(ends..'$')) and true or false 
+function _.endsWith(str,ends)
+  return (str:find(ends..'$')) and true or false
 end
 
 -- Returns the successor of a given character or set of characters
-function _.succ(str,n) 
+function _.succ(str,n)
   return (str:gsub('.',
-        function(match) return preOrSucc(match,n or 1) end)) 
+        function(match) return preOrSucc(match,n or 1) end))
 end
 _.next = _.succ
 
 -- Returns the predecessor of a given character or set of characters
-function _.pre(str,n) 
+function _.pre(str,n)
   return (str:gsub('.',
-        function(match) return preOrSucc(match,n and -n or -1) end)) 
+        function(match) return preOrSucc(match,n and -n or -1) end))
 end
 
 -- Title-izes a given string (each word beginning with a capitalized letter)
-function _.titleize(str) 
+function _.titleize(str)
   return (str:gsub('(%w[%w]*)',_.capitalizeFirst))
 end
 
--- Converts a given string (underscored or dasherize) into camelized style
-function _.camelize(str) 
-  return (str:find('[_-]') 
-     and _.clean(_.titleize(str:gsub('[_-]',' ')),'%s') 
-      or _.clean(str,'%s')) 
+-- Converts a given string (underscored or dasherized) into camelized style
+function _.camelize(str)
+  return (str:find('[_-]')
+     and _.clean(_.titleize(str:gsub('[_-]',' ')),'%s')
+      or _.clean(str,'%s'))
 end
 
--- Converts a given string (camelized or dasherize) into underscored style
+-- Converts a given string (camelized or dasherized) into underscored style
 function _.underscored(str)
   if #str < 2 then return str end
-  local str = str:sub(1,1):lower()..str:sub(2)  
+  local str = str:sub(1,1):lower()..str:sub(2)
   str = str:gsub('(%u)', function(match) return '_' + match:lower() end)
-           :gsub('[%s]+([^%s])', function(match) return '_' + match:lower() end)  
+           :gsub('[%s]+([^%s])', function(match) return '_' + match:lower() end)
   return (str:gsub('-','_'):gsub('^_',''):gsub('_[_]+','_'))
 end
 
--- Converts a given string (underscored or camelized) into dasherize style
+-- Converts a given string (unerscored or camelized) into dasherized style
 function _.dasherize(str)
   return (str:gsub('(%s*_%s*)','-')
              :gsub('(^%s*-%s*)','')
@@ -403,17 +403,14 @@ function _.dasherize(str)
              :gsub('%-+$',''))
 end
 
--- Converts a given string (underscored, humanized, dasherize or camelized) into a human-readable form
-function _.humanized(str)
+-- Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form
+function _.humanize(str)
   str = str:gsub('[_-]',' ')
-                 :gsub('%s%s+','')
-                 :gsub('%s$','')
-                 :gsub('^%s','')
-                 :gsub('%w%u%w',
-                      function(match) 
-                        return match:sub(1,1) + ' ' + match:sub(2):lower() 
-                      end)
-  return (str:sub(1,1):upper()) .. (str:sub(2):lower())
+           :gsub('%s$','')
+           :gsub('%s%s+','')
+           :gsub('^%s','')
+  str = str:sub(1,1) .. str:sub(2):gsub('(%u)', function(match) return ' ' .. match:lower() end)
+  return (_.capitalizeFirst(str:lower():gsub('%s*_*id$','')))
 end
 
 -- Converts a given string into an array of words
@@ -509,8 +506,8 @@ function _.toSentence(array,delimiter, lastDelimiter)
   local lastDelimiter = lastDelimiter or ' and '
   local j = #array
   for i,entry in ipairs(array) do
-    if i>1 and i<j then 
-      array[i] = entry:gsub('^%w',function(match) return ' ' + match end) 
+    if i>1 and i<j then
+      array[i] = entry:gsub('^%w',function(match) return ' ' + match end)
     end
   end
   return _.capitalizeFirst(t_concat(array,delimiter,1,j-1) + lastDelimiter + array[j]) .. '.'
