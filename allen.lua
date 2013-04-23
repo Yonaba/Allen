@@ -151,21 +151,35 @@ end
 -- Library functions
 ------------------------------------------------------------------
 
--- Capitalizes the first character of a given string
+--- Capitalizes the first character of a given string.
+-- <br/><em>Aliased as `capFirst`</em>.
+-- @tparam string str a string
+-- @treturn string a string
 function _.capitalizeFirst(str)
   return (str:gsub('^%l', string.upper))
 end
-_.capFirst = _.capitalizeFirst
+_.capFirst = capitalizeFirst
 
--- Capitalizes each word in a string
+--- Capitalizes each word in a given string.
+-- <br/><em>Aliased as `capEach` and `caps`</em>.
+-- @tparam string str a string
+-- @treturn string a string
+-- @see _.capEach
+-- @see _.caps
 function _.capitalizesEach(str)
   return (str:gsub("(%w[%w]*)",
-      function (match) return _.capFirst(match) end))
+      function (match) return _.capitalizeFirst(match) end))
 end
 _.capEach = _.capitalizesEach
 _.caps = _.capitalizesEach
 
--- Capitalizes substring i to j in a given string
+--- Capitalizes substring i to j in a given string
+-- <br/><em>Aliased as `cap`.</em>.
+-- @tparam string str a string
+-- @tparam int i the starting index. Defaults to 1 if not given. Can be negative (counting from right to left)
+-- @tparam int j the ending index. Defaults to the string length if not given.
+-- @treturn string a substring of the given string
+-- @see _.cap
 function _.capitalize(str,i,j)
   local i,j = i,j
   if not i then i,j = 1,#str end
@@ -173,10 +187,16 @@ function _.capitalize(str,i,j)
 end
 _.cap = _.capitalize
 
--- Lowers the first character case in a given string
+--- Lowers the first character in a given string
+-- @tparam string str a string
+-- @treturn string a string
 function _.lowerFirst(str) return (str:gsub('^%u', string.lower)) end
 
--- Lowers substring i to j case in a given string
+--- Lowers substring i to j in a given string
+-- @tparam string str a string
+-- @tparam int i the starting index. Defaults to 1 if not given. Can be negative (counting from right to left)
+-- @tparam int j the ending index. Default to string length if not given.
+-- @treturn string a string
 function _.lower(str,i,j)
   local i,j = i,j
   if not i then i,j = 1,#str end
@@ -184,23 +204,43 @@ function _.lower(str,i,j)
   return (str:gsub(pat,pat:lower()))
 end
 
--- Tests if a given string contains any upper-case character
-function _.isLower(str) return not str:find('%u') end
-_.isLowerCase = _.isLower
+--- Tests if a given string contains only upper-case characters.
+-- <br/><em>Aliased as `isLower`.</em>.
+-- @tparam string str a string
+-- @treturn bool a boolean
+-- @see _.isLower
+function _.isLowerCase(str) return not str:find('%u') end
+_.isLower = _.isLowerCase
 
--- Tests if a given string contains any lower-case character
-function _.isUpper(str) return not str:find('%l') end
-_.isUpperCase = _.isUpper
+--- Tests if a given string contains only lower-case characters.
+-- <br/><em>Aliased as `isUpper`.</em>.
+-- @tparam string str a string
+-- @treturn bool a boolean
+-- @see _.isUpper
+function _.isUpperCase(str) return not str:find('%l') end
+_.isUpper = _.isUpperCase
 
--- Tests if a given string starts with a lower-case character
-function _.startsLower(str) return _.isLower(str:sub(1,1)) end
-_.startsLowerCase = _.startsLower
+--- Tests if a given string starts with a lower-case character
+-- <br/><em>Aliased as `startsLower`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see _.startsLower
+function _.startsLowerCase(str) return _.isLower(str:sub(1,1)) end
+_.startsLower = _.startsLowerCase
 
--- Tests if a given starts with an upper-case character
-function _.startsUpper(str) return _.isUpper(str:sub(1,1)) end
-_.startsUpperCase = _.startsUpper
+--- Tests if a given string starts with an upper-case character
+-- <br/><em>Aliased as `startsUpper`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see _.startsUpper
+function _.startsUpperCase(str) return _.isUpper(str:sub(1,1)) end
+_.startsUpper = _.startsUpperCase
 
--- Swaps the case of each characters in substring i-j inside a given string
+--- Swaps the case of each characters in substring i to j inside a given string
+-- @tparam string str a string
+-- @tparam int i the starting index. Defaults to 1 if not given. Can be negative (counting from right to left)
+-- @param int j the ending index. Default to string length if not given
+-- @treturn string a string
 function _.swapCase(str,i,j)
   local i,j = i,j
   if not i then i,j = 1,#str end
@@ -215,8 +255,13 @@ function _.swapCase(str,i,j)
   return str
 end
 
--- Returns the levenshtein distance from stringA to stringB
+--- Returns the <em>Levenshtein distance</em> between two strings.
+-- See <a href="http://en.wikipedia.org/wiki/Levenshtein_distance" id="Levenshtein Distance on Wikipedia">Levenshtein Distance on Wikipedia</a>
+-- @tparam strng strA a string
+-- @tparam string strB another string
+-- @treturn int an integer representing the distance between the two given strings
 function _.levenshtein (strA,strB)
+	if not strB then return 0 end
   local M = matrix(#strA+1,#strB+1)
   local i,j,cost
   local row,col = #M,#M[1]
@@ -233,12 +278,17 @@ function _.levenshtein (strA,strB)
   return M[row][col]
 end
 
--- Converts a string to an array of step characters
-function _.chop(str,step)
-  local step = step or 1
+--- Converts a string to an array of n characters
+-- <br/><em>Aliased as `split`.</em>.
+-- @tparam string str a string
+-- @tparam int n an integer. Defaults to 1 if not given.
+-- @treturn array an array of strings, each one having a length of n characters at least.
+-- @see _.chars
+function _.chop(str,n)
+  n = n or 1
   if not (#str > 0) then return nil end
   local _chopped = {}
-    for w in str:gmatch(('.'):rep(step)) do t_insert(_chopped,w) end
+    for w in str:gmatch(('.'):rep(n)) do t_insert(_chopped,w) end
   local s,e
   if _chopped and (#_chopped > 0) then
     s,e = str:find(_chopped[#_chopped])
@@ -246,29 +296,51 @@ function _.chop(str,step)
     local _end = str:sub(e+1)
       if _end~='' then t_insert(_chopped,_end) end
     end
-  elseif #str<=step then _chopped = {str}
+  elseif #str<=n then _chopped = {str}
   end
   return _chopped
 end
 _.split = _.chop
 
--- Clears all special characters or characters matching a given pattern inside a given string
+--- Clears all special characters or characters matching a given pattern inside a given string
+-- <br/><em>Aliased as `trim`.</em>.
+-- @tparam string str a string
+-- @tparam string pat a pattern matching string to be cleaned from the original string. If not given, will clean non-alphanumeric characters.
+-- @treturn string a string
+-- @see _.trim
 function _.clean(str,pat) return (str:gsub(pat or '%W','')) end
 _.trim = _.clean
 
--- Escape any magic character in agiven string
+--- Escapes any magic character in agiven string
+-- <br/><em>Aliased as `esc`.</em>.
+-- @tparam string str a string
+-- @treturn string a string
+-- @see _.esc
 function _.escape(str) return (str:gsub('[%^%$%(%)%%%.%[%]%*%+%-%?]','%%%1')) end
 _.esc = _.escape
 
--- Substitute any ${var} or $var pattern-like with a value
+--- Substitutes any sequence matching ${var} or $var with a given value
+-- <br/><em>Aliased as `subst` and `interpolate`.</em>.
+-- @tparam string str a string
+-- @tparam value var a value to be used to replace ${var} or $var occurences
+-- @treturn string a string
+-- @see _.subst
+-- @see _.interpolate
 function _.substitute(str,value) return (str:gsub('%${*([%w]+)}*',value)) end
 _.subst = _.substitute
 _.interpolate = _.substitute
 
--- Tests if a given substring is included in a given string
+--- Tests if a given substring is included in a given string
+-- @tparam string str a string
+-- @tparam string sub a substring
+-- @treturn boolean a boolean
 function _.includes(str,sub) return (str:find(sub)) and true or false end
 
--- Converts a given string to an array of chars
+--- Converts a given string to an array of chars
+-- <br/><em>Aliased as `explode`.</em>.
+-- @tparam string str a string
+-- @treturn array an array of chars
+-- @see _.explode
 function _.chars(str)
   local _chars = {}
   for char in str:gmatch('.') do t_insert(_chars,char) end
@@ -276,20 +348,33 @@ function _.chars(str)
 end
 _.explode = _.chars
 
--- Checks if a given string features only alphabetic characters
+--- Checks if a given string contains only alphabetic characters
+-- @tparam string str a string
+-- @treturn boolean a boolean
 function _.isAlpha(str)  return not str:find('%A') end
 
--- Checks if a given string features only digits
+--- Checks if a given string contains only digits.
+-- <br/><em>Aliased as `isNum`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see isNum
 function _.isNumeric(str) return tonumber(str) and true or false end
+_.isNum = _.isNumeric
 
--- Returns the character at index i
+--- Indexes a string like an array, returning a character. 
+-- <br/><em>Aliased as `charAt`.</em>.
+-- @tparam string str a string
+-- @treturn int i an index
+-- @see _.charAt
 function _.index(str,i)
   i = i < 0 and #str+i+1 or i
   return str[i]
 end
 _.charAt = _.index
 
--- Checks if a given string matches an email address syntax
+--- Checks if a given string matches an email address syntax (not fully working yet).
+-- @tparam string str a string
+-- @treturn boolean a boolean
 function _.isEmail(str)
   local nAt = _.count(str,'@')
   if nAt > 1 or nAt == 0 or str:len() > 254 or str:find('%s') then return false end
@@ -319,22 +404,35 @@ function _.isEmail(str)
   return true
 end
 
--- Returns the number of substring occurences in a given string
+--- Returns the number of substring occurences in a given string
+-- @tparam string str a string
+-- @tparam string sub a substring or a pattern matching string
+-- @treturn int the expected count
 function _.count(str,sub) return select(2,str:gsub(sub,sub)) end
 
--- Inserts substring at index position in a given string
-function _.insert(str,index,substring)
+--- Inserts a given substring at index position in a given string
+-- @tparam string str a string
+-- @tparam string substring the substring to be inserted
+-- @tparam[opt] int index the insert position, defaults to the end of the string when not given
+-- @treturn string a string
+function _.insert(str,substring,index)
   index = index > #str and #str+1 or (index < 1 and 1 or index)
-  return str:sub(1,index-1) + substring + str:sub(index)
+  return str:sub(1,index-1) + (substring) + str:sub(index)
 end
 
--- Tests if a given string contain any alphanumeric character
+--- Tests if a given string contain any alphanumeric character
+-- @treturn boolean a boolean
 function _.isBlank(str) return (_.count(str,'%w')==0) end
 
--- Returns a string composed of a concatenation of all given arguments, separated with a given separator
+--- Returns a string composed of a concatenation of all given arguments, separated with a given separator
+-- @tparam string sep a string separator
+-- @tparam var_arg ... a list of strings to be concatenated
+-- @treturn string a string
 function _.join(sep,...) return t_concat({...},sep) end
 
--- Splits a given string in an array on the basis of end-lines characters included.
+--- Splits a given string in an array on the basis of end-lines characters (`\n` and/or `\r`).
+-- @tparam string str a string
+-- @treturn array an array of string
 function _.lines(str)
   local _lines = {}
   for l in str:gmatch('[^\n\r]+') do t_insert(_lines,l) end
@@ -342,49 +440,74 @@ function _.lines(str)
   return #_lines == 1 and _lines[1] or _lines
 end
 
--- Replaces howMany characters after index position in a given string with a given substring
+--- Replaces `howMany` characters after index position in a given string with a given substring
+-- @tparam string str a string
+-- @tparam int index an index position in the string
+-- @tparam int howMany the number of characters to be removed after index.
+-- @tparam string substring the substring that will replace the removed sequence.
+-- @treturn string a string
 function _.splice(str,index,howMany,substring)
-  local _str = _.insert(str,index+1,substring)
+  local _str = _.insert(str,substring,index+1)
   local index = index + (#substring)
   return _str:sub(1,index) + _str:sub(index + howMany + 1)
 end
 
--- Tests if a given string starts with a given pattern
+--- Tests if a given string starts with a given pattern
+-- @tparam string str a string
+-- @tparam string starts a pattern or a string
+-- @treturn boolean a boolean
 function _.startsWith(str,starts)
   return (str:find('^'..starts)) and true or false
 end
 
--- Tests if a given string ends with a given pattern
+--- Tests if a given string ends with a given pattern
+-- @tparam string str a string
+-- @tparam string ends a pattern or a string
+-- @treturn boolean a boolean
 function _.endsWith(str,ends)
   return (str:find(ends..'$')) and true or false
 end
 
--- Returns the successor of a given character or set of characters
+--- Returns the successor of a given character. In case the input was a string of characters, 
+-- returns a new string where each character is the successor of the character at the same position in the passed-in string
+-- @tparam string str a string
+-- @tparam int n the n-th successor of a character in the Ascii set
+-- @treturn string a string
 function _.succ(str,n)
   return (str:gsub('.',
         function(match) return preOrSucc(match,n or 1) end))
 end
 _.next = _.succ
 
--- Returns the predecessor of a given character or set of characters
+--- Returns the predecessor of a given character. In case the input was a string of characters, 
+-- returns a new string where each character is the predecessor of the character at the same position in the passed-in string
+-- @tparam string str a string
+-- @tparam int n the n-th predecessor of a character in the Ascii set
+-- @treturn string a string
 function _.pre(str,n)
   return (str:gsub('.',
         function(match) return preOrSucc(match,n and -n or -1) end))
 end
 
--- Title-izes a given string (each word beginning with a capitalized letter)
+--- Title-izes a given string (each word beginning with a capitalized letter)
+-- @tparam string str a string
+-- @treturn string a string
 function _.titleize(str)
   return (str:gsub('(%w[%w]*)',_.capitalizeFirst))
 end
 
--- Converts a given string (underscored or dasherized) into camelized style
+--- Converts a given string (underscored or dasherized) into camelized style
+-- @tparam string str a string
+-- @treturn string a string
 function _.camelize(str)
   return (str:find('[_-]')
      and _.clean(_.titleize(str:gsub('[_-]',' ')),'%s')
       or _.clean(str,'%s'))
 end
 
--- Converts a given string (camelized or dasherized) into underscored style
+--- Converts a given string (camelized or dasherized) into underscored style
+-- @tparam string str a string
+-- @treturn string a string
 function _.underscored(str)
   if #str < 2 then return str end
   local str = str:sub(1,1):lower()..str:sub(2)
@@ -393,7 +516,9 @@ function _.underscored(str)
   return (str:gsub('-','_'):gsub('^_',''):gsub('_[_]+','_'))
 end
 
--- Converts a given string (unerscored or camelized) into dasherized style
+--- Converts a given string (unerscored or camelized) into dasherized style
+-- @tparam string str a string
+-- @treturn string a string
 function _.dasherize(str)
   return (str:gsub('(%s*_%s*)','-')
              :gsub('(^%s*-%s*)','')
@@ -403,7 +528,9 @@ function _.dasherize(str)
              :gsub('%-+$',''))
 end
 
--- Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form
+--- Converts a given string (underscored, humanized, dasherized or camelized) into a human-readable form
+-- @tparam string str a string
+-- @treturn string a string
 function _.humanize(str)
   str = str:gsub('[_-]',' ')
            :gsub('%s$','')
@@ -413,14 +540,21 @@ function _.humanize(str)
   return (_.capitalizeFirst(str:lower():gsub('%s*_*id$','')))
 end
 
--- Converts a given string into an array of words
+--- Converts a given string into an array of words
+-- @tparam string str a string
+-- @treturn array an array of string
 function _.words(str)
   local _words = {}
   for word in str:gmatch('%w+') do t_insert(_words,word) end
   return #_words>0 and _words or nil
 end
 
--- Pads a given string with characters
+--- Pads a given string with characters
+-- @tparam string str a string
+-- @tparam int length the final string length
+-- @tparam string padStr the padding string character
+-- @tparam string side the padding direction. Should be either 'left' (see @{lpad}), 'right' (see @{rpad}) or 'both' (see @{lrpad}).
+-- @treturn string a string
 function _.pad(str,length,padStr,side)
   local str = str
   local padStr = padStr:sub(1,1)
@@ -438,19 +572,37 @@ function _.pad(str,length,padStr,side)
 
 end
 
--- Left-pad a given string
+--- Left-pads a given string
+-- <br/><em>Aliased as `rjust`.</em>.
+-- @tparam string str a string
+-- @tparam int length the final string length
+-- @tparam string padStr the padding string character
+-- @treturn string a string
 function _.lpad(str,length,padStr) return _.pad(str,length,padStr,'left') end
 _.rjust = _.lpad
 
--- Right-pad a given string
+--- Right-pads a given string
+-- <br/><em>Aliased as `ljust`.</em>.
+-- @tparam string str a string
+-- @tparam int length the final string length
+-- @tparam string padStr the padding string character
+-- @treturn string a string
 function _.rpad(str,length,padStr) return _.pad(str,length,padStr,'right') end
 _.ljust = _.rpad
 
--- Left and right pad a given string
+--- Left and right padding for strings.
+-- <br/><em>Aliased as `center`.</em>.
+-- @tparam string str a string
+-- @tparam int length the final string length
+-- @tparam string padStr the padding string character
+-- @treturn string a string
 function _.lrpad(str,length,padStr) return _.pad(str,length,padStr,'both') end
 _.center = _.lrpad
 
--- Returns the substring after the first pattern occurence in a given string
+--- Returns the substring after the first pattern occurence in a given string
+-- @tparam string str a string
+-- @tparam string pattern a pattern-matching string
+-- @treturn string a string
 function _.strRight(str,pattern)
   local s,e = str:find(pattern)
   local ret
@@ -461,7 +613,10 @@ function _.strRight(str,pattern)
   return nil
 end
 
--- Returns the substring after the last pattern occurence in a given string
+--- Returns the substring after the last pattern occurence in a given string
+-- @tparam string str a string
+-- @tparam string pattern a pattern-matching string
+-- @treturn string a string
 function _.strRightBack(str,pattern)
   local _str,s,e,ret
   for i = -1,-(#str),-1 do
@@ -475,7 +630,10 @@ function _.strRightBack(str,pattern)
   return nil
 end
 
--- Returns the substring before the first pattern occurence in a given string
+--- Returns the substring before the first pattern occurence in a given string
+-- @tparam string str a string
+-- @tparam string pattern a pattern-matching string
+-- @treturn string a string
 function _.strLeft(str,pattern)
   local s,e = str:find(pattern)
   local ret
@@ -486,7 +644,10 @@ function _.strLeft(str,pattern)
   return nil
 end
 
--- Returns the substring before the last pattern occurence in a given string
+--- Returns the substring before the last pattern occurence in a given string
+-- @tparam string str a string
+-- @tparam string pattern a pattern-matching string
+-- @treturn string a string
 function _.strLeftBack(str,pattern)
   local _str,s,e,ret
   for i = -1,-(#str),-1 do
@@ -500,7 +661,11 @@ function _.strLeftBack(str,pattern)
   return nil
 end
 
--- Converts an array of strings into a human-readable sentence (string)
+--- Converts an array of strings into a human-readable string
+-- @tparam array an array of values
+-- @tparam[opt] string delimiter a delimiter. Defaults to comma character when not given.
+-- @tparam[optchain] string lastDelimiter the last delimiter to be used. Defaults to ` and ` when not given.
+-- @treturn string a string
 function _.toSentence(array,delimiter, lastDelimiter)
   local delimiter = delimiter or ','
   local lastDelimiter = lastDelimiter or ' and '
@@ -513,16 +678,26 @@ function _.toSentence(array,delimiter, lastDelimiter)
   return _.capitalizeFirst(t_concat(array,delimiter,1,j-1) + lastDelimiter + array[j]) .. '.'
 end
 
--- Repeats a given string concatenated with a given separator count times
+--- Repeats a given string concatenated with a given separator count times.
+-- @tparam string str a string
+-- @tparam[opt] int count the repetitions count. Defaults to 2 when not given.
+-- @tparam[optchain] string sep a separator. Defaults to space character when not given.
+-- @treturn string a string
 function _.rep(str,count,sep) return (str .. (sep or ' ')):rep(count or 2) end
 
--- Wraps a given string
+--- Wraps a given string
+-- @tparam string str a string
+-- @treturn string a wrapped string
 function _.surround(str,wrap) return wrap .. str .. wrap end
 
--- Returns a quoted string
+--- Returns a quoted string
+-- @tparam string str a string
+-- @treturn string a quoted string
 function _.quote(str) return ('%q'):format(str) end
 
--- Returns an array of Ascii codes of a character or a set of characters
+--- Returns an array of Ascii codes for a given set of characters
+-- @tparam string str a string
+-- @treturn array an array of ascii codes
 function _.bytes(str)
   local _byteSet = {}
   for char in str:gmatch('.') do
@@ -531,34 +706,60 @@ function _.bytes(str)
   return _byteSet
 end
 
--- Returns the Ascii code of character at index i.
+--- Returns the Ascii code of the i-th character in the given string
+-- @tparam string str a string
+-- @tparam int i an index
+-- @treturn int a number representing the Ascii code of the i-th char
 function _.byteAt(str,i) return (str[i]):byte() end
 
--- Checks if the given string is a reserved keyword
+--- Checks if the given string is a Lua reserved keyword.
+-- <br/><em>Aliased as `isLuaKword` and `isReserved`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see _.isLuaKword
+-- @see _.isReserved
 function _.isLuaKeyword(str) return luaKwords[str] and true or false end
 _.isLuaKword = _.isLuaKeyword
 _.isReserved = _.isLuaKeyword
 
--- Checks if the given string is a token
+--- Tests if a given substring is a known Lua token (operator).
+-- <br/><em>Aliased as `isOperator` and `isOp`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see _.isToken
+-- @see _.isOperator
 function _.isToken(str) return luaTokens[str] and true or false end
 _.isOperator = _.isToken
 _.isOp = _.isToken
 
--- Checks if the given string can be an identifier
+--- Tests if a given substring is a valid Lua identifier for a variable
+-- <br/><em>Aliased as `isIden` and `isVarName`.</em>.
+-- @tparam string str a string
+-- @treturn boolean a boolean
+-- @see _.isIden
+-- @see _.isVarName
 function _.isIdentifier(str)
     return (str:match('^[%a_]+[%w_]*$') and not _.isReserved(str)) and true or false
 end
 _.isIden = _.isIdentifier
-_.isName = _.isIdentifier
+_.isVarName = _.isIdentifier
 
--- Checks if the given input is a valid Lua type
+--- Checks if the given input is has a known Lua type or matches an expected type.
+-- @tparam value var some variable
+-- @tparam string expectedType an expected type for the passed-in variable. If not given, the function will check if the actual variable type is known to Lua.
+-- @treturn boolean a boolean
 function _.is(var,expectedType)
   local _varType = type(var)
   if expectedType then return (_varType == expectedType) end
   return luaTypes[_varType] and _varType or nil
 end
 
--- Returns a table reporting each pattern occurences
+--- Returns a table listing counts for each match to a given pattern
+-- <br/><em>Aliased as `stats`.</em>.
+-- @tparam string str a string
+-- @tparam string pat a pattern matching string
+-- @treturn array an array
+-- @see _.stats
 function _.statistics(str,pat)
   local pat = pat or '.'
   local _rep = {}
@@ -569,7 +770,7 @@ function _.statistics(str,pat)
 end
 _.stats = _.statistics
 
--- Imports functions inside string library
+--- Imports library functions inside a given context or the string library.
 function _.import()
   local methods = functions(_)
   local excluded = {join = true, toSentence = true,import = true}
