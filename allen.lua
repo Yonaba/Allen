@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 local _ = {}
 local string = string
 local pairs,ipairs = pairs, ipairs
-local min = math.min
+local min, modf = math.min, math.modf
 local type = type
 local t_concat = table.concat
 local t_insert = table.insert
@@ -372,36 +372,12 @@ function _.index(str,i)
 end
 _.charAt = _.index
 
---- Checks if a given string matches an email address syntax (not fully working yet).
+--- Checks if a given string matches an email address syntax.
+-- Not compliant with any RFC standards though.
 -- @tparam string str a string
 -- @treturn boolean a boolean
 function _.isEmail(str)
-  local nAt = _.count(str,'@')
-  if nAt > 1 or nAt == 0 or str:len() > 254 or str:find('%s') then return false end
-  local localPart = _.strLeft(str,'@')
-  local domainPart = _.strRight(str,'@')
-  if not localPart or not domainPart then return false end
-
-  if not localPart:match("[%w!#%$%%&'%*%+%-/=%?^_`{|}~]+")
-      or (localPart:len() > 64) then
-        return false
-  end
-  if _.startsWith(localPart,'%.+')
-      or _.endsWith(localPart,'%.+') or localPart:find('%.%.+') then
-        return false
-  end
-
-  if not domainPart:match('[%w%-_]+%.%a%a+$')
-      or domainPart:len() > 253 then
-        return false
-  end
-  local fDomain = _.strLeftBack(domainPart,'%.')
-  if _.startsWith(fDomain,'[_%-%.]+')
-      or _.endsWith(fDomain,'[_%-%.]+') or fDomain:find('%.%.+') then
-        return false
-  end
-
-  return true
+	return (str:match("[A-Za-z0-9%.%%%+%-%_]+@[A-Za-z0-9%.%%%+%-%_]+%.%w%w%w?%w?")~=nil)
 end
 
 --- Returns the number of substring occurences in a given string
