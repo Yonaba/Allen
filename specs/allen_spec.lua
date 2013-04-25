@@ -320,7 +320,22 @@ context('The module', function()
       assert_nil(_.chars(''))
     end)
 
-  end)   
+  end)
+	
+	context('isEmail', function()
+	
+		test('Tests if the input matches a valid email address', function()
+			assert_true(_.isEmail('a.b@c.de'))
+			assert_true(_.isEmail('a_b@c.de'))
+			assert_true(_.isEmail('_@_.aa'))
+			assert_false(_.isEmail('@'))
+			assert_false(_.isEmail('.@.'))
+			assert_false(_.isEmail('.@.dd'))
+			assert_false(_.isEmail('@.dd'))
+			assert_false(_.isEmail('a.com'))
+		end)
+	
+	end)
   
   context('count', function()
     
@@ -547,4 +562,33 @@ context('The module', function()
     
   end)   
    --]]
+	 
+	context('numberFormat', function()
+		
+			test('formats a number to a string', function()
+				assert_equal(_.numberFormat(25),'25')
+				assert_equal(_.numberFormat(-5),'-5')
+			end)
+			
+			test('Can convert to a string with a specific number of decimals with rounding', function()
+				assert_equal(_.numberFormat(25,2),'25.00')
+				assert_equal(_.numberFormat(-100,5),'-100.00000')
+				assert_equal(_.numberFormat(18.5789,4),'18.5789')
+				assert_equal(_.numberFormat(18.5789,5),'18.57890')
+				assert_equal(_.numberFormat(18.5769,3),'18.577')
+				assert_equal(_.numberFormat(18.5759,3),'18.576')
+				assert_equal(_.numberFormat(18.5749,3),'18.575')
+				assert_equal(_.numberFormat(18.5749,2),'18.57')
+			end)			
+			
+			test('supports custom thousand separator', function()
+				assert_equal(_.numberFormat(2500,0,' '),'2 500')
+				assert_equal(_.numberFormat(-2500, 2,' ',','),'-2 500,00')
+			end)
+
+			test('Minus sign can be customized for negative numbers', function()
+				assert_equal(_.numberFormat(-8546.254, 4,',','.','NEG '),'NEG 8,546.2540')
+			end)				
+	
+	end)
 end)
