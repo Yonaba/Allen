@@ -543,6 +543,7 @@ function _.numberFormat(num, decimals, thousandSeparator, decimalSeparator, sign
 	end
 	return (('%s%s%s'):format(fmt,(decimalSeparator or '.'),dec))
 end
+_.numFmt = _.numberFormat
 
 --- Converts a given string into an array of words
 -- @tparam string str a string
