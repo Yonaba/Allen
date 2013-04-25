@@ -32,11 +32,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 local _ = {}
 local string = string
 local pairs,ipairs = pairs, ipairs
-local min, modf = math.min, math.modf
+local min, floor = math.min, math.floor
 local type = type
 local t_concat = table.concat
 local t_insert = table.insert
-local tonumber = tonumber
+local tonumber, tostring = tonumber, tostring
 local getfenv = getfenv
 
 local luaKwords = {
@@ -514,6 +514,34 @@ function _.humanize(str)
            :gsub('^%s','')
   str = str:sub(1,1) .. str:sub(2):gsub('(%u)', function(match) return ' ' .. match:lower() end)
   return (_.capitalizeFirst(str:lower():gsub('%s*_*id$','')))
+end
+
+--- Formats a given number to a string
+-- @tparam number num a number.
+-- @tparam[opt] int decimals the number of decimals after the whole part. Defaults to 0 when omitted.
+-- @tparam[optchain] string thousandSeparator the symbol used to separate thousands. Defaults to `,` when not given.
+-- @tparam[optchain] string decimalSeparator the symbol used to separate the whole part from the decimal part. Defaults to `.` when not given.
+-- @tparam[optchain] string sign the string to be used to replace the minus symbol for negative numbers. Defaults to `-` when omitted.
+-- @treturn string a string
+function _.numberFormat(num, decimals, thousandSeparator, decimalSeparator, sign)
+	num = (floor(num)==num and (tostring(num)..'.0') or tostring(num))
+	local int, dec = num:match('(-*%d+)%.(%d*)')
+  local fmt, repl_pattern, repl = int, "%1"..(thousandSeparator or ',').."%2" 
+  while true do
+		fmt, repl = fmt:gsub("^(-?%d+)(%d%d%d)", repl_pattern)
+    if (repl==0) then break end
+  end
+	fmt = sign and (fmt:gsub('^%-',sign)) or fmt
+	decimals = decimals or 0
+	if decimals <= 0 then return fmt end
+	if #dec > decimals then
+		dec = tonumber(dec:sub(decimals+1,decimals+1))>5 
+		  and tostring(tonumber(dec:sub(1,decimals))+1)
+			 or dec:sub(1,decimals)
+	else
+		dec = _.rpad(dec,decimals,'0')
+	end
+	return (('%s%s%s'):format(fmt,(decimalSeparator or '.'),dec))
 end
 
 --- Converts a given string into an array of words
