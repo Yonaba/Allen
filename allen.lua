@@ -158,7 +158,6 @@ end
 function _.capitalizeFirst(str)
   return (str:gsub('^%l', string.upper))
 end
-_.capFirst = capitalizeFirst
 
 --- Capitalizes each word in a given string.
 -- <br/><em>Aliased as `capEach` and `caps`</em>.
@@ -170,8 +169,6 @@ function _.capitalizesEach(str)
   return (str:gsub("(%w[%w]*)",
       function (match) return _.capitalizeFirst(match) end))
 end
-_.capEach = _.capitalizesEach
-_.caps = _.capitalizesEach
 
 --- Capitalizes substring i to j in a given string
 -- <br/><em>Aliased as `cap`.</em>.
@@ -185,7 +182,6 @@ function _.capitalize(str,i,j)
   if not i then i,j = 1,#str end
   return (str:gsub(str:sub(i,j),str:sub(i,j):upper()))
 end
-_.cap = _.capitalize
 
 --- Lowers the first character in a given string
 -- @tparam string str a string
@@ -210,7 +206,6 @@ end
 -- @treturn bool a boolean
 -- @see _.isLower
 function _.isLowerCase(str) return not str:find('%u') end
-_.isLower = _.isLowerCase
 
 --- Tests if a given string contains only lower-case characters.
 -- <br/><em>Aliased as `isUpper`.</em>.
@@ -218,23 +213,20 @@ _.isLower = _.isLowerCase
 -- @treturn bool a boolean
 -- @see _.isUpper
 function _.isUpperCase(str) return not str:find('%l') end
-_.isUpper = _.isUpperCase
 
 --- Tests if a given string starts with a lower-case character
 -- <br/><em>Aliased as `startsLower`.</em>.
 -- @tparam string str a string
 -- @treturn boolean a boolean
 -- @see _.startsLower
-function _.startsLowerCase(str) return _.isLower(str:sub(1,1)) end
-_.startsLower = _.startsLowerCase
+function _.startsLowerCase(str) return _.isLowerCase(str:sub(1,1)) end
 
 --- Tests if a given string starts with an upper-case character
 -- <br/><em>Aliased as `startsUpper`.</em>.
 -- @tparam string str a string
 -- @treturn boolean a boolean
 -- @see _.startsUpper
-function _.startsUpperCase(str) return _.isUpper(str:sub(1,1)) end
-_.startsUpper = _.startsUpperCase
+function _.startsUpperCase(str) return _.isUpperCase(str:sub(1,1)) end
 
 --- Swaps the case of each characters in substring i to j inside a given string
 -- @tparam string str a string
@@ -248,7 +240,7 @@ function _.swapCase(str,i,j)
   local _sub = _.chars(oldPat)
   if _sub then
     for i,char in ipairs(_sub) do
-      _sub[i] = _.isUpper(char) and char:lower() or char:upper()
+      _sub[i] = _.isUpperCase(char) and char:lower() or char:upper()
     end
     return (str:gsub(oldPat, t_concat(_sub)))
   end
@@ -300,7 +292,6 @@ function _.chop(str,n)
   end
   return _chopped
 end
-_.split = _.chop
 
 --- Clears all special characters or characters matching a given pattern inside a given string
 -- <br/><em>Aliased as `trim`.</em>.
@@ -309,7 +300,6 @@ _.split = _.chop
 -- @treturn string a string
 -- @see _.trim
 function _.clean(str,pat) return (str:gsub(pat or '%W','')) end
-_.trim = _.clean
 
 --- Escapes any magic character in agiven string
 -- <br/><em>Aliased as `esc`.</em>.
@@ -317,7 +307,6 @@ _.trim = _.clean
 -- @treturn string a string
 -- @see _.esc
 function _.escape(str) return (str:gsub('[%^%$%(%)%%%.%[%]%*%+%-%?]','%%%1')) end
-_.esc = _.escape
 
 --- Substitutes any sequence matching ${var} or $var with a given value
 -- <br/><em>Aliased as `subst` and `interpolate`.</em>.
@@ -327,8 +316,6 @@ _.esc = _.escape
 -- @see _.subst
 -- @see _.interpolate
 function _.substitute(str,value) return (str:gsub('%${*([%w]+)}*',value)) end
-_.subst = _.substitute
-_.interpolate = _.substitute
 
 --- Tests if a given substring is included in a given string
 -- @tparam string str a string
@@ -359,7 +346,6 @@ function _.isAlpha(str)  return not str:find('%A') end
 -- @treturn boolean a boolean
 -- @see isNum
 function _.isNumeric(str) return tonumber(str) and true or false end
-_.isNum = _.isNumeric
 
 --- Indexes a string like an array, returning a character. 
 -- <br/><em>Aliased as `charAt`.</em>.
@@ -370,7 +356,6 @@ function _.index(str,i)
   i = i < 0 and #str+i+1 or i
   return str[i]
 end
-_.charAt = _.index
 
 --- Checks if a given string matches an email address syntax.
 -- Not compliant with any RFC standards though.
@@ -453,7 +438,6 @@ function _.succ(str,n)
   return (str:gsub('.',
         function(match) return preOrSucc(match,n or 1) end))
 end
-_.next = _.succ
 
 --- Returns the predecessor of a given character. In case the input was a string of characters, 
 -- returns a new string where each character is the predecessor of the character at the same position in the passed-in string
@@ -543,7 +527,6 @@ function _.numberFormat(num, decimals, thousandSeparator, decimalSeparator, sign
 	end
 	return (('%s%s%s'):format(fmt,(decimalSeparator or '.'),dec))
 end
-_.numFmt = _.numberFormat
 
 --- Converts a given string into an array of words
 -- @tparam string str a string
@@ -574,7 +557,6 @@ function _.pad(str,length,padStr,side)
       end
     return str
   end
-
 end
 
 --- Left-pads a given string
@@ -584,7 +566,6 @@ end
 -- @tparam string padStr the padding string character
 -- @treturn string a string
 function _.lpad(str,length,padStr) return _.pad(str,length,padStr,'left') end
-_.rjust = _.lpad
 
 --- Right-pads a given string
 -- <br/><em>Aliased as `ljust`.</em>.
@@ -593,7 +574,6 @@ _.rjust = _.lpad
 -- @tparam string padStr the padding string character
 -- @treturn string a string
 function _.rpad(str,length,padStr) return _.pad(str,length,padStr,'right') end
-_.ljust = _.rpad
 
 --- Left and right padding for strings.
 -- <br/><em>Aliased as `center`.</em>.
@@ -602,7 +582,6 @@ _.ljust = _.rpad
 -- @tparam string padStr the padding string character
 -- @treturn string a string
 function _.lrpad(str,length,padStr) return _.pad(str,length,padStr,'both') end
-_.center = _.lrpad
 
 --- Returns the substring after the first pattern occurence in a given string
 -- @tparam string str a string
@@ -724,8 +703,6 @@ function _.byteAt(str,i) return (str[i]):byte() end
 -- @see _.isLuaKword
 -- @see _.isReserved
 function _.isLuaKeyword(str) return luaKwords[str] and true or false end
-_.isLuaKword = _.isLuaKeyword
-_.isReserved = _.isLuaKeyword
 
 --- Tests if a given substring is a known Lua token (operator).
 -- <br/><em>Aliased as `isOperator` and `isOp`.</em>.
@@ -734,8 +711,6 @@ _.isReserved = _.isLuaKeyword
 -- @see _.isToken
 -- @see _.isOperator
 function _.isToken(str) return luaTokens[str] and true or false end
-_.isOperator = _.isToken
-_.isOp = _.isToken
 
 --- Tests if a given substring is a valid Lua identifier for a variable
 -- <br/><em>Aliased as `isIden` and `isVarName`.</em>.
@@ -746,8 +721,6 @@ _.isOp = _.isToken
 function _.isIdentifier(str)
     return (str:match('^[%a_]+[%w_]*$') and not _.isReserved(str)) and true or false
 end
-_.isIden = _.isIdentifier
-_.isVarName = _.isIdentifier
 
 --- Checks if the given input is has a known Lua type or matches an expected type.
 -- @tparam value var some variable
@@ -773,7 +746,6 @@ function _.statistics(str,pat)
   end
   return _rep
 end
-_.stats = _.statistics
 
 --- Imports library functions inside a given context or the string library.
 function _.import()
@@ -782,6 +754,36 @@ function _.import()
   for i,v in ipairs(methods) do
     if not excluded[v] then getfenv().string[v] = _[v] end
   end
+end
+
+if rawget(_G, 'ALLEN_ALIASES') then
+	_.capFirst = _.capitalizeFirst
+	_.capEach = _.capitalizesEach
+	_.caps = _.capitalizesEach
+	_.cap = _.capitalize
+	_.isLower = _.isLowerCase
+	_.isUpper = _.isUpperCase
+	_.startsLower = _.startsLowerCase
+	_.startsUpper = _.startsUpperCase
+	_.split = _.chop
+	_.trim = _.clean
+	_.esc = _.escape
+	_.subst = _.substitute
+	_.interpolate = _.substitute
+	_.isNum = _.isNumeric
+	_.charAt = _.index
+	_.next = _.succ
+	_.numFmt = _.numberFormat
+	_.rjust = _.lpad
+	_.ljust = _.rpad
+	_.center = _.lrpad
+	_.isLuaKword = _.isLuaKeyword
+	_.isReserved = _.isLuaKeyword
+	_.isOperator = _.isToken
+	_.isOp = _.isToken
+	_.isIden = _.isIdentifier
+	_.isVarName = _.isIdentifier
+	_.stats = _.statistics
 end
 
 return _
