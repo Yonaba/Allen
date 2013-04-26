@@ -100,73 +100,73 @@ context('The module', function()
     
   end)
 
-  context('isLower', function()
+  context('isLowerCase', function()
   
     test('checks if the given string is lowercase', function()
-      assert_true(_.isLower('hello'))
-      assert_false(_.isLower('HELLO'))
+      assert_true(_.isLowerCase('hello'))
+      assert_false(_.isLowerCase('HELLO'))
     end)
     
     test('Returns false when any uppercase char is found', function()
-      assert_false(_.isLower('heLlo'))
+      assert_false(_.isLowerCase('heLlo'))
     end)
     
     test('Returns true with empty strings', function()
-      assert_true(_.isLower(''))
+      assert_true(_.isLowerCase(''))
     end)    
 
     test('Accepts sentences with delimiters aswell', function()
-      assert_true(_.isLower('hello.foo/bar,foo-bar'))
+      assert_true(_.isLowerCase('hello.foo/bar,foo-bar'))
     end)
     
   end)
 
-  context('isUpper', function()
+  context('isUpperCase', function()
   
     test('checks if the given string is uppercase', function()
-      assert_false(_.isUpper('hello'))
-      assert_true(_.isUpper('HELLO'))
+      assert_false(_.isUpperCase('hello'))
+      assert_true(_.isUpperCase('HELLO'))
     end)
     
     test('Returns false when any lowercase char is found', function()
-      assert_false(_.isUpper('heLlo'))
+      assert_false(_.isUpperCase('heLlo'))
     end)
     
     test('Returns true with empty strings', function()
-      assert_true(_.isUpper(''))
+      assert_true(_.isUpperCase(''))
     end)    
 
     test('Accepts sentences with delimiters aswell', function()
-      assert_true(_.isUpper('HELLO.FOO/BAR,FOO-BAR'))
+      assert_true(_.isUpperCase('HELLO.FOO/BAR,FOO-BAR'))
     end) 
     
   end)
 
-  context('startsLower', function()
+  context('startsLowerCase', function()
   
     test('checks if the given string is starts with a lowercase char', function()
-      assert_true(_.startsLower('hello'))
-      assert_false(_.startsLower('Hello'))
-      assert_false(_.startsLower('HELLO'))
+      assert_true(_.startsLowerCase('hello'))
+      assert_false(_.startsLowerCase('Hello'))
+      assert_false(_.startsLowerCase('HELLO'))
     end)
     
     test('Returns true with empty strings', function()
-      assert_true(_.startsLower(''))
+      assert_true(_.startsLowerCase(''))
     end)
    
   end)
   
-  context('startsUpper', function()
+  context('startsUpperCase', function()
   
     test('checks if the given string is starts with an uppercase char', function()
-      assert_false(_.startsUpper('hello'))
-      assert_false(_.startsUpper('hELLO'))
-      assert_true(_.startsUpper('HELLO'))
-      assert_true(_.startsUpper('Hello'))
+      assert_false(_.startsUpperCase('hello'))
+      assert_false(_.startsUpperCase('hELLO'))
+      assert_true(_.startsUpperCase('HELLO'))
+      assert_true(_.startsUpperCase('Hello'))
     end)
     
     test('Returns true with empty strings', function()
-      assert_true(_.startsUpper(''))
+      assert_true(_.startsUpperCase(''))
     end)
     
   end)
