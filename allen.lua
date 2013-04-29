@@ -37,7 +37,7 @@ local type = type
 local t_concat = table.concat
 local t_insert = table.insert
 local tonumber, tostring = tonumber, tostring
-local getfenv = getfenv
+local getfenv, rawget = getfenv, rawget
 
 local luaKwords = {
   ['and'] = true,     ['break'] = true,   ['do'] = true,
@@ -747,15 +747,22 @@ function _.statistics(str,pat)
   return _rep
 end
 
---- Imports library functions inside a given context or the string library.
-function _.import()
-  local methods = functions(_)
-  local excluded = {join = true, toSentence = true,import = true}
-  for i,v in ipairs(methods) do
-    if not excluded[v] then getfenv().string[v] = _[v] end
-  end
+--- Imports library functions inside a given context or the global environment.
+-- @tparam[opt] table context a context. Defaults to `_G` (global environment) when not given.
+-- @tparam[optchain] boolean noConflict Skips function import in case its key already exists in the given context
+-- @treturn table the passed-in context
+function _.import(context, noConflict)
+	context = context or _G
+	for k,v in pairs(_) do
+		if rawget(context,k) then
+			if not noConflict then context[k] = v end
+		else 
+			context[k] = v
+		end		
+	end
+	return context
 end
-
+	
 if rawget(_G, 'ALLEN_ALIASES') then
 	_.capFirst = _.capitalizeFirst
 	_.capEach = _.capitalizesEach
