@@ -126,3 +126,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [Esa-Matti Suuronen]: https://github.com/epeli
 [Edward Tsech]: https://github.com/edtsech
 [MIT-LICENSE]: http://www.opensource.org/licenses/mit-license.php
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Yonaba/allen/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
